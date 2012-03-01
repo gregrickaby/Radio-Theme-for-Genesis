@@ -123,6 +123,7 @@ class Radio_Front_End_Customizations {
 	/**
 	 * Create Social Media Icons
 	 *
+	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
 	function radio_social_media_icons() {
