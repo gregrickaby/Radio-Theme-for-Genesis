@@ -121,7 +121,7 @@ class Radio_Front_End_Customizations {
 	}
 	
 	/**
-	 * Create Social Media Icons
+	 * Create social media icons to show below posts
 	 *
 	 * @author Greg Rickaby
 	 * @since 1.0.0
