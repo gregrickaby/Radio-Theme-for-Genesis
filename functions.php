@@ -15,7 +15,7 @@
 
 /** Start the engine */
 require_once( TEMPLATEPATH.'/lib/init.php' );
-if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) ) 
+if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) )
 		include_once( CHILD_DIR . '/lib/admin/admin.php' );
 		include_once( CHILD_DIR . '/lib/admin/front.php' );
 		include_once( CHILD_DIR . '/lib/widgets/radio-latest-news-widget.php' );
@@ -101,6 +101,7 @@ add_action( 'wp_print_styles', 'radio_deregister_styles', 100 );
 /**
  * Remove unwanted css from the homepage
  * 
+ * @author Greg Rickaby
  * @since 1.0.0
  */
 function radio_deregister_styles() {
