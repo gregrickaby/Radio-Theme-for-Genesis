@@ -85,6 +85,7 @@ class Radio_Front_End_Customizations {
 	/**
 	 * Create the Live Toolbar.
 	 *
+	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
 	function radio_live_toolbar() { 
@@ -190,6 +191,7 @@ class Radio_Front_End_Customizations {
 	/**
 	 * Filters the <body> class to add "custom".
 	 *
+	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
 	function body_class( $classes ) {
@@ -210,6 +212,7 @@ add_action( 'template_redirect', 'radio_customizations_init' );
 /**
  * Add customizations to the front-end of the theme.
  *
+ * @author Greg Rickaby
  * @since 1.0.0
  */
 function radio_customizations_init() {
@@ -223,6 +226,7 @@ add_action( 'widgets_init', 'radio_load_widgets' );
 /**
  * Replace Genesis Featured Post Widget with Radio Latest News Widget
  *
+ * @author Greg Rickaby
  * @since 1.0.0
  */
 function radio_load_widgets() {
@@ -234,8 +238,8 @@ add_filter( 'user_contactmethods', 'radio_user_contact_methods' );
 /**
  * Customize Contact Methods
  *
+ * @author Greg Rickaby
  * @since 1.0.0
-
  */
 function radio_user_contact_methods( $contactmethods ) {
 	$contactmethods = array(
