@@ -35,7 +35,7 @@ $nivo_sort = genesis_get_option( 'nivo_sort', 'child-settings');
 		<div class="ribbon"></div>
 		<div id="slider" class="nivoSlider">
 			<?php $loop_1 = new WP_Query( 'cat='.$nivo_category.'&orderby='.$nivo_sort.'&order='.$nivo_order.'&posts_per_page='.$nivo_limit.'' ); while ($loop_1->have_posts()) : $loop_1->the_post(); ?>
-			<a href="<?php the_permalink(); ?>" /><img src="<?php echo CHILD_URL; ?>/lib/scripts/timthumb.php?src=<?php echo child_grab_image(); ?>&amp;h=300&amp;w=960" alt="<?php the_title(); ?>" title="<?php the_title(); ?>" /></a>
+			<a href="<?php the_permalink(); ?>" /><img src="<?php echo CHILD_URL; ?>/lib/scripts/timthumb.php?src=<?php echo radio_grab_image(); ?>&amp;h=300&amp;w=960" alt="<?php the_title(); ?>" title="<?php the_title(); ?>" /></a>
 			<?php wp_reset_query(); ?>
 			<?php endwhile; ?>
 		</div>

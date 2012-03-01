@@ -15,10 +15,11 @@
 
 /** Start the engine */
 require_once( TEMPLATEPATH.'/lib/init.php' );
-if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) )
+if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) ) {
 		include_once( CHILD_DIR . '/lib/admin/admin.php' );
 		include_once( CHILD_DIR . '/lib/admin/front.php' );
 		include_once( CHILD_DIR . '/lib/widgets/radio-latest-news-widget.php' );
+}
 
 /** Image Sizes */
 add_image_size ( 'featured', 370, 150, true );
