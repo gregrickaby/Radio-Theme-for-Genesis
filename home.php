@@ -5,7 +5,7 @@
  * @author Greg Rickaby
  * @since 1.0.0
  */
-function child_grab_image() {
+function radio_grab_image() {
 	global $post, $posts;
 	$first_img = '';
 	ob_start();
@@ -16,14 +16,14 @@ function child_grab_image() {
 }
 
 
-add_action( 'genesis_after_header', 'child_featured_content_slider' );
+add_action( 'genesis_after_header', 'radio_featured_content_slider' );
 /**
  * Build the Nivo featured content slider.
  * 
  * @author Greg Rickaby
  * @since 1.0.0
  */ 
-function child_featured_content_slider() { 
+function radio_featured_content_slider() { 
 
 $nivo_category = genesis_get_option( 'nivo_category', 'child-settings' );
 $nivo_order = genesis_get_option( 'nivo_order', 'child-settings' );
@@ -44,14 +44,14 @@ $nivo_sort = genesis_get_option( 'nivo_sort', 'child-settings');
 
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
-add_action( 'genesis_loop', 'child_home_loop' );
+add_action( 'genesis_loop', 'radio_home_loop' );
 /**
  * Build three column widgit area.
  * 
  * @author Greg Rickaby
  * @since 1.0.0
  */
-function child_home_loop() { ?>
+function radio_home_loop() { ?>
 
 <div id="home-column-1" class="sidebar widget-area">
 	<div class="widget-wrap">

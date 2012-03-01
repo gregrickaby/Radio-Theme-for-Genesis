@@ -13,14 +13,14 @@ Template Name: Photos
 
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' ); // Force Full-Width Layout
 remove_action( 'genesis_loop', 'genesis_do_loop' ); 
-add_action( 'genesis_loop', 'child_loop_photos' ); 
+add_action( 'genesis_loop', 'radio_loop_photos' ); 
 /**
  * Remove default loop. Execute child loop instead.
  *
  * @author Greg Rickaby
  * @since 1.0.0
  */
-function child_loop_photos() { ?>
+function radio_loop_photos() { ?>
 	<div <?php post_class( 'photos' ); ?>>
 
 		<h1 class="entry-title"><?php the_title(); ?></h1>
