@@ -1,4 +1,4 @@
-<strong>RADIO THEME</strong>
+<strong>RADIO THEME v1.1</strong>
 <a href="http://radio.gregrickaby.com">http://radio.gregrickaby.com</a>
 
 <strong>REQUIREMENTS</strong>
@@ -27,7 +27,7 @@ Footer 3 - This is a widgeted area that appears on the bottom of every page.
 <a href="http://www.gravityforms.com/">Gravity Forms</a>
 <a href="http://wordpress.org/extend/plugins/genesis-simple-edits/">Genesis Simple Edits</a>
 <a href="http://wordpress.org/extend/plugins/disqus-comment-system/">Disqus Comment System</a>
-<a href="http://wordpress.org/extend/plugins/simple-social-icons/">Simple Social Icons</a> (For the homepage)
+<a href="http://wordpress.org/extend/plugins/simple-social-icons/">Simple Social Icons</a>
 
 <strong>HOME.PHP FILE</strong>
 This file creates the layout for the homepage. It includes an image grabber for TimThumb, NivoSlider and three sidebars "Home Left", "Home Middle", and "Primary Sidebar".
@@ -48,3 +48,9 @@ I'd like personally thank the following people for their help and contributions 
 <a href="http://wpsmith.net/">Travis Smith</a>
 <a href="http://about.me/jtsternberg">Justin Sternberg</a>
 <a href="http://billerickson.net/">Bill Erickson</a>
+
+<strong>TO DO</strong>
+- Breadcrumbs
+- Exclude categories from Radio Latest News
+- a.rsswidget:visited{}
+</ul>

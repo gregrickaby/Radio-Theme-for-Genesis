@@ -5,7 +5,7 @@
     Author: Greg Rickaby
     Author URI: http://gregrickaby.com
 
-    Version: 1.0
+    Version: 1.1
 
     Tags: custom-background, custom-header, featured-images, threaded-comments, two-columns, three-columns, mobile responsive, timthumb, jFlow, radio
  
@@ -584,6 +584,10 @@ ul.menu li.sfHover ul,
 	margin: 0 0 25px;
 }
 
+.entry-content a {
+	text-decoration: underline;
+}
+
 blockquote {
 	background: url(images/blockquote.png) no-repeat;
 	border: none;
@@ -1043,6 +1047,11 @@ p.wp-caption-text {
 	border-top: 1px solid #ddd;
 }
 
+a.rsswidget:visited {
+	color: #fff;
+}
+
+
 /* Dropdowns
 ------------------------------------------------------------ */
 
@@ -1053,6 +1062,7 @@ p.wp-caption-text {
 	padding: 3px;
 	width: 85%;
 }
+
 
 /* User Profile
 ------------------------------------------------------------ */
