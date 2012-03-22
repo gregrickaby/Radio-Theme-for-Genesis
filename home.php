@@ -16,7 +16,6 @@ function radio_grab_image() {
 }
 
 
-add_action( 'genesis_after_header', 'radio_featured_content_slider' );
 /**
  * Build the Nivo featured content slider.
  * 
