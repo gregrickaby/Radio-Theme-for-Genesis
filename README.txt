@@ -52,5 +52,4 @@ I'd like personally thank the following people for their help and contributions 
 <strong>TO DO</strong>
 - Breadcrumbs
 - Exclude categories from Radio Latest News
-- a.rsswidget:visited{}
 </ul>
