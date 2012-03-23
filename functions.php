@@ -40,9 +40,6 @@ add_theme_support( 'genesis-footer-widgets', 3 );
 /** Add default posts and comments RSS feed links to head */
 add_theme_support( 'automatic-feed-links' );
 
-/** Add Nivo Slider (featured content slider) */
-add_action( 'genesis_after_header', 'radio_featured_content_slider' );
-
 /** Create additional color style options */
 add_theme_support( 'child-style-selector', array( 
 	'radio-red' => 'Red',
