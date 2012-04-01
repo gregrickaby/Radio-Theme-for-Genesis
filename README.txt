@@ -4,7 +4,7 @@
 <strong>REQUIREMENTS</strong>
 1. <a href="http://wordpress.org">WordPress</a> 3.3 or above.
 2. <a href="http://gregrickaby.com/go/genesis-theme">Genesis Framework</a> v1.8 or above.
-3. PHP 5.1 or above.
+3. PHP 5.2.4 or above.
 4. Read/Write permissions (775) for the /wp-content/themes/radio/<strong>custom</strong> folder.
 
 <strong>INSTALL</strong>
