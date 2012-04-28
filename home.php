@@ -26,8 +26,8 @@ function radio_featured_content_slider() {
 
 $nivo_category = genesis_get_option( 'nivo_category', 'child-settings' );
 $nivo_order = genesis_get_option( 'nivo_order', 'child-settings' );
-$nivo_limit = genesis_get_option( 'nivo_limit', 'child-settings');
-$nivo_sort = genesis_get_option( 'nivo_sort', 'child-settings');
+$nivo_limit = genesis_get_option( 'nivo_limit', 'child-settings' );
+$nivo_sort = genesis_get_option( 'nivo_sort', 'child-settings' );
 
 ?>
 	<div class="slider-wrapper theme-default">
