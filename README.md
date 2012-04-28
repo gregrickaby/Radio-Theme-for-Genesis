@@ -40,7 +40,7 @@
 - Featured Images (for the Radio News widget) should be 370x150 pixels. They will be automatically cropped and resized.
 
 <strong>SUPPORT</strong>
--Please visit <a href="http://radio.gregrickaby.com/support">http://radio.gregrickaby.com/support</a> for theme support.
+- Please visit <a href="http://radio.gregrickaby.com/support">http://radio.gregrickaby.com/support</a> for theme support.
 
 <strong>CREDITS</strong>
 I'd like personally thank the following people for their help and contributions to the code:
