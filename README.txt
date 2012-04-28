@@ -36,7 +36,7 @@ This file creates the layout for the homepage. It includes an image grabber for 
 This file creates a template and layout for your photo page. You must first create a photos page in WordPress and then select "Photos" from the template dropdown.
 
 <strong>IMAGES</strong>
-Nivo slider images should be 960x300 pixels. If they are larger or smaller, TimThumb will automatically crop and resize.
+<strong>Nivo slider images should be 960x300 pixels.</strong> If they are larger or smaller, TimThumb will automatically crop and resize.
 Featured Images (for the Radio News widget) should be 370x150 pixels. They will be automatically cropped and resized.
 
 <strong>SUPPORT</strong>
@@ -52,4 +52,7 @@ I'd like personally thank the following people for their help and contributions 
 <strong>TO DO</strong>
 - Breadcrumbs
 - Exclude categories from Radio Latest News
+- Option to turn Nivo Slider on/off
+- Move TimThumb config to /custom/
+- Remove effect from Photos page. Go with faster CSS Opacity.
 </ul>
