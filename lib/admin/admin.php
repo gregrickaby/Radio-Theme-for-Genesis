@@ -21,7 +21,8 @@
 	define( 'CHILD_THEME_URL', 'http://radio.gregrickaby.com' );
 	define( 'CHILD_THEME_VERSION', '1.1.0' );
 	define( 'CHILD_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1332436879' ) ); # http://unixtimesta.mp
- 
+
+
 /**
  * Registers a new admin page, providing content and corresponding menu item
  * for the Radio Settings page.
@@ -204,15 +205,33 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		echo '<input type="text" name="' . $this->get_field_name( 'station_twitter' ) .'" id="' . $this->get_field_id( 'station_twitter' ) . '" value="' . esc_attr( $this->get_field_value( 'station_twitter' ) ) . '" size="40" />';
 		echo '<p><span class="description">StationName</span></p>';
 
+
+		echo '<label>Facebook Page URL: </label>';
+		echo '<input type="text" name="' . $this->get_field_name( 'station_facebook' ) .'" id="' . $this->get_field_id( 'station_facebook' ) . '" value="' . esc_attr( $this->get_field_value( 'station_facebook' ) ) . '" size="40" />';
+		echo '<p><span class="description">https://www.facebook.com/pages/your-page-name</span></p>';
+
+		echo '<label>Facebook APP ID: </label>';
+		echo '<input type="text" name="' . $this->get_field_name( 'station_facebook_app_id' ) .'" id="' . $this->get_field_id( 'station_facebook_app_id' ) . '" value="' . esc_attr( $this->get_field_value( 'station_facebook_app_id' ) ) . '" size="40" />';
+		echo '<p><span class="description">Obtain your App ID here: https://developers.facebook.com/apps</span></p>';
+
+		echo '<label>Instagram Username: </label>';
+		echo '<input type="text" name="' . $this->get_field_name( 'station_instagram' ) .'" id="' . $this->get_field_id( 'station_instagram' ) . '" value="' . esc_attr( $this->get_field_value( 'station_instagram' ) ) . '" size="40" />';
+		echo '<p><span class="description">StationName</span></p>';
+
 	}
 
 	function nivo_settings() {
 		
+		$nivo_switch = $this->get_field_value( 'nivo_show' );
 		$nivo_category = get_categories( 'type=post&orderby=name&hide_empty=0' ); 
 		$nivo_current_category = $this->get_field_value( 'nivo_category' );
 		$nivo_current_limit = $this->get_field_value( 'nivo_limit' );
 		$nivo_current_sort = $this->get_field_value( 'nivo_sort' );
 		$nivo_current_order = $this->get_field_value( 'nivo_order' );
+		
+		echo '<input type="checkbox" name="' . $this->get_field_name( 'nivo_show' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'nivo_show' ) ) . ' />';
+		echo '<label> Show Featured Content Slider?</label>';
+		echo '<p><span class="description">Check to display the featured content slider on your homepage</span></p>';
 
 		$nivo_post_limit = array(
 			'10'	=> '10',
@@ -343,5 +362,5 @@ add_action( 'admin_menu', 'child_add_child_theme_settings', 2 );
  */
 function child_add_child_theme_settings() {
 	global $_child_theme_settings;
-	$_child_theme_settings = new Radio_Theme_Settings;	 	
+	$_child_theme_settings = new Radio_Theme_Settings;
 }

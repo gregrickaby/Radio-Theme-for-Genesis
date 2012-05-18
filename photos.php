@@ -25,12 +25,23 @@ function radio_loop_photos() { ?>
 
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 			<div class="row-photos clear">
-<?php $loop_1 = new WP_Query( 'category_name=photos&posts_per_page=512' );  while ( $loop_1->have_posts() ) : $loop_1->the_post(); $do_not_duplicate = $post->ID; ?>
-				<div class="photo-info left">
-					<h3 class="photo-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( array(200,200), array('class' => 'photo') ); ?></a>
+			<?php 
+				$args = array(
+					'category_name' => 'photos',
+					'posts_per_page' => 512,
+					'order' => 'DESC'
+				);
+
+			$query = new WP_Query( $args ); 
+			if ( $query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
+			$do_not_duplicate = $post->ID; ?>
+				<div class="photo-info <?php $even_odd = (++$j % 5 == 0) ? 'clear' : 'left'; echo $even_odd; ?>">
+					<div class="photo-title"><p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p></div>
+					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( array( 150,150 ), array( 'class' => 'photo' ) ); ?></a>
 				</div>
-<?php endwhile; wp_reset_query(); ?>
+			<?php endwhile; else : ?>
+				<p>Sorry, no posts found</p>
+			<?php endif; wp_reset_query(); ?>
 			</div>
 
 	</div><!-- end .post -->

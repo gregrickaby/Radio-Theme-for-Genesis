@@ -5,12 +5,12 @@
     Author: Greg Rickaby
     Author URI: http://gregrickaby.com
 
-    Version: 1.1
+    Version: 1.2
 
-    Tags: custom-background, custom-header, featured-images, threaded-comments, two-columns, three-columns, mobile responsive, timthumb, jFlow, radio
+    Tags: custom-background, custom-header, featured-images, threaded-comments, two-columns, three-columns, mobile responsive, responsive, timthumb, jFlow, radio
  
     Template: genesis
-    Template Version: 1.8
+    Template Version: 1.8.1
 
 	License: GNU General Public License v2.0 (or later)
 	License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -61,7 +61,7 @@
 * Social Media Icons
 * DJ Rotator Widget
 * Latest News Widget
-* NextGen Gallery & Photo Page
+* Photo Page & NextGen Gallery
 * Radio Red
 * Radio Orange
 * Radio Green
@@ -113,7 +113,6 @@ input,
 select,
 textarea,
 .author-box,
-.breadcrumb,
 .sticky,
 .taxonomy-description,
 .wp-caption {
@@ -499,9 +498,14 @@ ul.menu li.sfHover ul,
 ------------------------------------------------------------ */
 
 .breadcrumb {
-	font-size: 14px;
-	margin: -10px 0 30px;
-	padding: 5px 10px;
+	font-size: 12px;
+	color: #333;
+	padding: 5px 0 15px 0;
+}
+
+.breadcrumb a,
+.breadcrumb a:visited {
+	text-decoration: underline;
 }
 
 
@@ -1668,23 +1672,28 @@ div.gform_wrapper .gform_footer {
 	margin-bottom: 15px;
 }
 
-.photos h3.photo-title {
-	font-size: 16px;
-	text-align: center;
-}
-
 .photos .photo-info {
-	height: 180px;
+	height: 200px;
 	width: 200px;
-	margin: 3px;
-	padding: 5px;
+	text-align: center;
+	margin: 10px 10px 20px;
 }
 
-.photos .photo-info p {
-	font-size: 13px;
-	font-weight: 700;
-	height: 40px;
-	width: auto;
+.photos .photo-title {
+	height: 50px;
+}
+
+.photos .photo-title p {
+	line-height: 18px;
+}
+
+.photos .photo-info:hover {
+	text-decoration: underline;
+}
+
+.photos .photo-info img:hover {
+	opacity: 0.8;
+	filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
 

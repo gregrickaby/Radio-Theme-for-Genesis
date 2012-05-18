@@ -24,14 +24,12 @@ class Radio_Front_End_Customizations {
 	private $settings_field = 'child-settings';
 
 	public function __construct() {
-
 		add_action( 'genesis_meta', array( &$this, 'add_viewport_meta_tag' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'styles' ) ); // Yes, hook to wp_enqueue_scripts
 		add_action( 'genesis_before', array( &$this, 'radio_live_toolbar' ) );
 		add_action( 'genesis_after_post_content', array( &$this, 'radio_social_media_icons' ), 5 );
 		add_filter( 'body_class', array( &$this, 'body_class' ) );
-
 	}
 
 	/**
@@ -41,9 +39,7 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	function add_viewport_meta_tag() {
-
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0"/>' . "\n";
-
 	}
 
 	/**
@@ -53,20 +49,20 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	function scripts() {
-
 		/** Reference Nivo */
-		wp_enqueue_script( 'nivo', CHILD_URL . '/lib/js/jquery.nivo.slider.pack.js', array( 'jquery' ), '1.0', true );
+		if ( is_front_page() ) 
+			wp_enqueue_script( 'nivo', CHILD_URL . '/lib/js/jquery.nivo.slider.pack.js', array( 'jquery' ), '1.0', true );
 
 		/** Enqueue theme custom script */
-		wp_enqueue_script( 'radio', CHILD_URL . '/lib/js/radio.js', array( 'jquery', 'nivo' ), '1.0', true );
+		wp_enqueue_script( 'radio', CHILD_URL . '/lib/js/radio.js', array( 'jquery' ), '1.0', true );
 
 		/** Pass value from PHP to JS */
 		$params = array(
 			'nivo_effect' => genesis_get_option( 'nivo_effect', $this->settings_field ),
 			'nivo_speed' => genesis_get_option( 'nivo_speed', $this->settings_field ),
+			'fb_app_id' => genesis_get_option( 'station_facebook_app_id', $this->settings_field )
 		);
 		wp_localize_script( 'radio', 'radioL10n', $params );
-
 	}
 
 	/**
@@ -76,10 +72,8 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	function styles() {
-
 		if ( genesis_get_option( 'custom_stylesheet', $this->settings_field ) )
 			wp_enqueue_style ( 'radio', CHILD_URL . '/custom/custom.css', false, '1.0.0', 'screen' );
-
 	}
 
 	/**
@@ -89,7 +83,6 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	function radio_live_toolbar() { 
-
 		$toolbar = genesis_get_option ( 'station_live_toolbar', $this->settings_field );
 		$listen  = genesis_get_option( 'station_listen', $this->settings_field );
 		$phone   = genesis_get_option( 'station_phone', $this->settings_field );
@@ -117,8 +110,7 @@ class Radio_Front_End_Customizations {
 			?>
 			</div>
 		</div><!-- end #live-toolbar -->
-		<?php
-	}
+	<?php }
 	
 	/**
 	 * Create social media icons to show below posts
@@ -132,22 +124,11 @@ class Radio_Front_End_Customizations {
 	
 		if ( ! $showsocialicons )
 			return;
-
 			if ( !is_front_page() ) { ?>
 
 	<div id="social-media-icons">
 		<div class="facebook-button">
-		<div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-		<div id="fb-root"></div>
-			<script>
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) return;
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=134944943249381";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			</script>
+			<div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
 		</div>
 
 		<div class="twitter-button">
@@ -196,17 +177,12 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	function body_class( $classes ) {
-
 		if ( $style = genesis_get_option( 'style_selection', $this->settings_field ) )
 			$classes[] = esc_attr( sanitize_html_class( $style ) );
-
 		if ( genesis_get_option( 'custom_stylesheet', $this->settings_field ) )
 			$classes[] = 'custom';
-
 		return $classes;
-
-	}
-
+		}
 }
 
 add_action( 'template_redirect', 'radio_customizations_init' );
