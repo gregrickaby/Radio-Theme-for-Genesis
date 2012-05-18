@@ -222,12 +222,13 @@ function radio_user_contact_methods( $contactmethods ) {
 	$contactmethods = array(
 		'twitter'  => __( 'Twitter' ),
 		'facebook' => __( 'Facebook' ),
+		'instagram'    => __( 'Instagram' ),
 		'skype'    => __( 'Skype' )
 	);
 	return apply_filters( 'contactmethods',$contactmethods );
 }
 
-add_filter( 'genesis_before_header', 'radio_fb_root' );
+add_filter( 'genesis_before', 'radio_fb_root' );
 /**
  * Insert Facebook Intialization
  *
