@@ -17,12 +17,12 @@
 - <strong>Featured images 370x150 pixels.</strong> WordPress will automatically crop and resize.
 
 <h3>WIDGET AREAS</h3>
-<strong>Primary Sidebar</strong> - This is the primary sidebar.
-<strong>Header Right</strong> - This is the widgeted area that appears at the top right of the header.
-<strong>Home Middle</strong> - This is the widgeted area that appears on the middle of the hompage.
-<strong>Footer 1</strong> - This is a widgeted area that appears on the bottom of every page.
-<strong>Footer 2</strong> - This is a widgeted area that appears on the bottom of every page.
-<strong>Footer 3</strong> - This is a widgeted area that appears on the bottom of every page.
+- <strong>Primary Sidebar</strong> - This is the primary sidebar.
+- <strong>Header Right</strong> - This is the widgeted area that appears at the top right of the header.
+- <strong>Home Middle</strong> - This is the widgeted area that appears on the middle of the hompage.
+- <strong>Footer 1</strong> - This is a widgeted area that appears on the bottom of every page.
+- <strong>Footer 2</strong> - This is a widgeted area that appears on the bottom of every page.
+- <strong>Footer 3</strong> - This is a widgeted area that appears on the bottom of every page.
 
 <h3>RECOMMENDED PLUG-INS</h3>
 - <a href="http://wordpress.org/extend/plugins/dj-rotator-for-wordpress/" target="_blank">DJ Rotator For WordPress</a>
@@ -48,10 +48,10 @@ Please visit <a href="http://radio.gregrickaby.com/support">http://radio.gregric
 
 <h3>CREDITS</h3>
 I'd like personally thank the following people for their help and contributions to the code:
-<a href="http://garyjones.co.uk/">Gary Jones</a>
-<a href="http://wpsmith.net/">Travis Smith</a>
-<a href="http://about.me/jtsternberg">Justin Sternberg</a>
-<a href="http://billerickson.net/">Bill Erickson</a>
+- <a href="http://garyjones.co.uk/">Gary Jones</a>
+- <a href="http://wpsmith.net/">Travis Smith</a>
+- <a href="http://about.me/jtsternberg">Justin Sternberg</a>
+- <a href="http://billerickson.net/">Bill Erickson</a>
 
 <h3>CHANGE LOG</h3>
 
@@ -77,4 +77,3 @@ I'd like personally thank the following people for their help and contributions 
 - Exclude categories from Radio Latest News
 - Widget navigation drop-downs
 - Custom Post Type with DJ's (with twitter stream, instagram stream, photos galleries, and blog posts)
-- Move all function code to OOP

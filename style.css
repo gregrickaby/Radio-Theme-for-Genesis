@@ -1685,14 +1685,6 @@ div.gform_wrapper .gform_footer {
 	margin: 10px 10px 20px;
 }
 
-.photos .photo-title {
-	height: 50px;
-}
-
-.photos .photo-title p {
-	line-height: 18px;
-}
-
 .photos .photo-info:hover {
 	text-decoration: underline;
 }
@@ -1700,6 +1692,16 @@ div.gform_wrapper .gform_footer {
 .photos .photo-info img:hover {
 	opacity: 0.8;
 	filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.photos .photo-title {
+	height: 55x;
+	padding: 10px;
+}
+
+.photos .photo-title p {
+	font-size: 13px;
+	line-height: 17px;
 }
 
 

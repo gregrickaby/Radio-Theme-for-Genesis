@@ -27,10 +27,13 @@ class Radio_Front_End_Customizations {
 		add_action( 'genesis_meta', array( &$this, 'add_viewport_meta_tag' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'styles' ) ); // Yes, hook to wp_enqueue_scripts
+		add_action( 'wp_print_styles', array( $this, 'radio_manage_scripts' ) );
+		add_action( 'genesis_before', array ( &$this, 'radio_fb_root' ) );
 		add_action( 'genesis_before', array( &$this, 'radio_live_toolbar' ) );
 		add_action( 'genesis_after_post_content', array( &$this, 'radio_social_media_icons' ), 5 );
 		add_filter( 'body_class', array( &$this, 'body_class' ) );
 	}
+
 
 	/**
 	 * Add viewport meta-tag to <head> for responsive design in mobile browsers.
@@ -38,9 +41,10 @@ class Radio_Front_End_Customizations {
 	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
-	function add_viewport_meta_tag() {
+	public function add_viewport_meta_tag() {
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0"/>' . "\n";
 	}
+
 
 	/**
 	 * Load theme scripts.
@@ -48,7 +52,7 @@ class Radio_Front_End_Customizations {
 	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
-	function scripts() {
+	public function scripts() {
 		/** Reference Nivo */
 		if ( is_front_page() ) 
 			wp_enqueue_script( 'nivo', CHILD_URL . '/lib/js/jquery.nivo.slider.pack.js', array( 'jquery' ), '1.0', true );
@@ -65,16 +69,30 @@ class Radio_Front_End_Customizations {
 		wp_localize_script( 'radio', 'radioL10n', $params );
 	}
 
+
 	/**
 	 * Check for and load custom.css immediately before the </head> tag.
 	 *
 	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
-	function styles() {
+	public function styles() {
 		if ( genesis_get_option( 'custom_stylesheet', $this->settings_field ) )
 			wp_enqueue_style ( 'radio', CHILD_URL . '/custom/custom.css', false, '1.0.0', 'screen' );
 	}
+
+
+	/**
+	 * Insert Facebook <div>
+	 * This will allow Racebook social plug-ins to work correctly via HTML5.
+	 *
+	 * @author Greg Rickaby
+	 * @since 1.0.0
+	 */
+	public function radio_fb_root() { ?>
+		<div id="fb-root"></div>
+	<?php }
+
 
 	/**
 	 * Create the Live Toolbar.
@@ -82,7 +100,7 @@ class Radio_Front_End_Customizations {
 	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
-	function radio_live_toolbar() { 
+	public function radio_live_toolbar() { 
 		$toolbar = genesis_get_option ( 'station_live_toolbar', $this->settings_field );
 		$listen  = genesis_get_option( 'station_listen', $this->settings_field );
 		$phone   = genesis_get_option( 'station_phone', $this->settings_field );
@@ -90,9 +108,7 @@ class Radio_Front_End_Customizations {
 		$email   = genesis_get_option( 'station_email', $this->settings_field );
 
 		if ( ! $toolbar )
-			return;
-
-		?>
+			return; ?>
 		<div id="live-toolbar">
 			<div class="live-toolbar-wrap">
 			<?php
@@ -111,14 +127,15 @@ class Radio_Front_End_Customizations {
 			</div>
 		</div><!-- end #live-toolbar -->
 	<?php }
-	
+
+
 	/**
 	 * Create social media icons to show below posts
 	 *
 	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
-	function radio_social_media_icons() {
+	public function radio_social_media_icons() {
 	$showsocialicons = genesis_get_option ( 'station_social_icons', $this->settings_field );
 	$twittername  = genesis_get_option( 'station_twitter', $this->settings_field );
 	
@@ -176,14 +193,35 @@ class Radio_Front_End_Customizations {
 	 * @author Greg Rickaby
 	 * @since 1.0.0
 	 */
-	function body_class( $classes ) {
+	public function body_class( $classes ) {
 		if ( $style = genesis_get_option( 'style_selection', $this->settings_field ) )
 			$classes[] = esc_attr( sanitize_html_class( $style ) );
 		if ( genesis_get_option( 'custom_stylesheet', $this->settings_field ) )
 			$classes[] = 'custom';
 		return $classes;
 		}
-}
+
+
+	/**
+	 * Manage Scripts and CSS
+	 * 
+	 * @author Greg Rickaby
+	 * @since 1.0.0
+	 */
+	public function radio_manage_scripts() {
+		if ( is_front_page() ) {
+			wp_dequeue_script( 'ngg-slideshow' );
+			wp_deregister_script( 'jquery-cycle' );
+			wp_deregister_script( 'thickbox' );
+			wp_deregister_style( 'NextGEN' );
+			wp_deregister_style( 'shutter' );
+			wp_deregister_style( 'gforms_css' );
+			wp_deregister_style( 'thickbox' );
+		}
+	}
+
+} // -------------------------- end class Radio_Front_End_Customizations -------------------------- //
+
 
 add_action( 'template_redirect', 'radio_customizations_init' );
 /**
@@ -199,6 +237,7 @@ function radio_customizations_init() {
 
 }
 
+
 add_action( 'widgets_init', 'radio_load_widgets' );
 /**
  * Replace Genesis Featured Post Widget with Radio Latest News Widget
@@ -210,6 +249,7 @@ function radio_load_widgets() {
 	unregister_widget( 'Genesis_Featured_Post' );
 	register_widget( 'Radio_Latest_News' );
 }
+
 
 add_filter( 'user_contactmethods', 'radio_user_contact_methods' );
 /**
@@ -228,16 +268,6 @@ function radio_user_contact_methods( $contactmethods ) {
 	return apply_filters( 'contactmethods',$contactmethods );
 }
 
-add_filter( 'genesis_before', 'radio_fb_root' );
-/**
- * Insert Facebook Intialization
- *
- * @author Greg Rickaby
- * @since 1.0.0
- */
-function radio_fb_root() { ?>
-	<div id="fb-root"></div>
-<?php }
 
 add_filter( 'http_request_args', 'radio_dont_update_theme', 5, 2 );
 /**

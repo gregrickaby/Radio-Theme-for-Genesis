@@ -39,8 +39,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	 * 
 	 * @since 1.0.0
 	 */
-	function __construct() {
-
+	public function __construct() {
 		// Specify a unique page ID. 
 		$page_id = 'radio-theme-settings';
 
@@ -74,8 +73,8 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 
 		// Create the Admin Page
 		$this->create( $page_id, $menu_ops, $page_ops, $settings_field, $default_settings );
-
 	}
+
 
 	/**
 	 * Sets up further aspects of the admin page.
@@ -83,15 +82,14 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	 * Handles the design settings being reset, hooks in standard metabox methods,
 	 * and some other related dependencies and features.
 	 */
-	function settings_init() {
-
+	public function settings_init() {
 		/** Hook in scripts, columns, and  metaboxes registration */ 
 	 	parent::settings_init();
 
 		/** Hook in our customizations */
 		add_action( 'genesis_settings_sanitizer_init', array( $this, 'sanitization_filters' ) );
-
 	}
+
 
 	/** 
 	 * Set up Sanitization Filters
@@ -100,8 +98,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	 *
 	 * @since 1.0.0
 	 */	
-	function sanitization_filters() {
-
+	public function sanitization_filters() {
 		genesis_add_option_filter(
 			'no_html',
 			$this->settings_field,
@@ -117,6 +114,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		);
 	}
 
+
 	/**
 	 * Register metaboxes on Child Theme Settings page
 	 *
@@ -124,7 +122,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	 *
 	 * @see Child_Theme_Settings::style_box() Callback for style information
 	 */
-	function metaboxes() {
+	public function metaboxes() {
 
 		add_meta_box( 'info-box', 'Radio Theme Information', array ($this, 'info_box' ), $this->pagehook, 'main', 'high' );
 		add_meta_box( 'style-box', 'Color Style', array ($this, 'style_box' ), $this->pagehook, 'main', 'high' );
@@ -142,12 +140,13 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	 *
 	 * @see Child_Theme_Settings::metaboxes()
 	 */
-	function info_box() {
+	public function info_box() {
 
 		echo '<p><strong>Version:</strong> ' . CHILD_THEME_VERSION . ' &middot; <strong>Released:</strong> ' . CHILD_THEME_RELEASE_DATE . '</p>';
 	}
 
-	function style_box() {
+
+	public function style_box() {
 
 		$current_style = $this->get_field_value( 'style_selection' );
 		$styles  = get_theme_support( 'child-style-selector' );
@@ -165,15 +164,15 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		echo '<p><span class="description">Please select the color style from the drop down list and save your settings.</span></p>';
 	}
 
-	function custom_stylesheet() {
 
+	public function custom_stylesheet() {
 		echo '<input type="checkbox" name="' . $this->get_field_name( 'custom_stylesheet' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'custom_stylesheet' ) ) . ' />';
 		echo '<label> Load <span class="description"><code>custom.css</code></span>?</label>';
 		echo '<p><span class="description">The use of this stylesheet will prevent your customizations from disappearing after a theme update.</span></p>';
 	}
-	
-	function show_live_toolbar() {
 
+
+	public function show_live_toolbar() {
 		echo '<input type="checkbox" name="' . $this->get_field_name( 'station_live_toolbar' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'station_live_toolbar' ) ) . ' />';
 		echo '<label> Show Live Toolbar? </label>';
 		echo '<p><span class="description">The Live Toolbar spans the top of the website with a link to Listen Live. It displays the request line, email, text message, etc...</span></p>';
@@ -195,8 +194,8 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		echo '<p><span class="description">station-email@radiostation.com</span></p>';
 	}
 
-	function social_info() {
-		
+
+	public function social_info() {		
 		echo '<input type="checkbox" name="' . $this->get_field_name( 'station_social_icons' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'station_social_icons' ) ) . ' />';
 		echo '<label> Show Social Media Icons? </label>';
 		echo '<p><span class="description">Social media icons will be added to the bottom both posts and pages.</span></p>';
@@ -217,11 +216,10 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		echo '<label>Instagram Username: </label>';
 		echo '<input type="text" name="' . $this->get_field_name( 'station_instagram' ) .'" id="' . $this->get_field_id( 'station_instagram' ) . '" value="' . esc_attr( $this->get_field_value( 'station_instagram' ) ) . '" size="40" />';
 		echo '<p><span class="description">StationName</span></p>';
-
 	}
 
-	function nivo_settings() {
-		
+
+	public function nivo_settings() {
 		$nivo_switch = $this->get_field_value( 'nivo_show' );
 		$nivo_category = get_categories( 'type=post&orderby=name&hide_empty=0' ); 
 		$nivo_current_category = $this->get_field_value( 'nivo_category' );
@@ -332,7 +330,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	 *
 	 * @since 1.0.0
 	 */
-	function help( ) {
+	public function help( ) {
 		global $my_admin_page;
 		$screen = get_current_screen();
 
@@ -352,6 +350,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 	}
 
 }
+
 
 add_action( 'admin_menu', 'child_add_child_theme_settings', 2 );
 /**

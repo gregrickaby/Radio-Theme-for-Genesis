@@ -35,9 +35,9 @@ function radio_loop_photos() { ?>
 			$query = new WP_Query( $args ); 
 			if ( $query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
 			$do_not_duplicate = $post->ID; ?>
-				<div class="photo-info <?php $even_odd = (++$j % 5 == 0) ? 'clear' : 'left'; echo $even_odd; ?>">
-					<div class="photo-title"><p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p></div>
+				<div class="photo-info left">
 					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( array( 150,150 ), array( 'class' => 'photo' ) ); ?></a>
+					<div class="photo-title"><p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p></div>
 				</div>
 			<?php endwhile; else : ?>
 				<p>Sorry, no posts found</p>

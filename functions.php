@@ -80,22 +80,5 @@ genesis_unregister_layout( 'content-sidebar-sidebar' );
 genesis_unregister_layout( 'sidebar-sidebar-content' );
 genesis_unregister_layout( 'sidebar-content-sidebar' );
 
+/** Remove NextGen Gallery Version from <head>*/
 remove_action( 'wp_head', array( 'nggGallery', 'nextgen_version' ) );
-add_action( 'wp_print_styles', 'radio_manage_scripts', 100 );
-/**
- * Remove unwanted scripts css from the homepage
- * 
- * @author Greg Rickaby
- * @since 1.0.0
- */
-function radio_manage_scripts() {
-	if ( is_front_page() ) {
-		wp_dequeue_script( 'ngg-slideshow' );
-		wp_deregister_script( 'jquery-cycle' );
-		wp_deregister_script( 'thickbox' );
-		wp_deregister_style( 'NextGEN' );
-		wp_deregister_style( 'shutter' );
-		wp_deregister_style( 'gforms_css' );
-		wp_deregister_style( 'thickbox' );
-	}
-}
