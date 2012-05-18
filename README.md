@@ -59,6 +59,7 @@ I'd like personally thank the following people for their help and contributions 
 - Automatic updates
 - Option to turn Nivo Slider on/off
 - Added Facebook page and Facebook APP ID Option
+- Added Facebook OpenGraph Metadata
 - Better javascript managment
 - Move TimThumb cache directory to /custom/
 - Changed TimThumb cache clean-up to every 12-hours
