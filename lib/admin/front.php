@@ -227,6 +227,17 @@ function radio_user_contact_methods( $contactmethods ) {
 	return apply_filters( 'contactmethods',$contactmethods );
 }
 
+add_filter( 'genesis_before_header', 'radio_fb_root' );
+/**
+ * Insert Facebook Intialization
+ *
+ * @author Greg Rickaby
+ * @since 1.0.0
+ */
+function radio_fb_root() { ?>
+	<div id="fb-root"></div>
+<?php }
+
 add_filter( 'http_request_args', 'radio_dont_update_theme', 5, 2 );
 /**
  * Don't Update Theme

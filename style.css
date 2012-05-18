@@ -159,6 +159,12 @@ ol li {
 	margin: 0 0 25px;
 }
 
+#fb-root {
+	display: none;
+	visibility: hidden;
+}
+
+
 /* Hyperlinks
 ------------------------------------------------------------ */
 
