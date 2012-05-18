@@ -19,8 +19,8 @@
 /** Define Theme Info Constants */
 	define( 'CHILD_THEME_NAME', 'Radio Theme' );
 	define( 'CHILD_THEME_URL', 'http://radio.gregrickaby.com' );
-	define( 'CHILD_THEME_VERSION', '1.1.0' );
-	define( 'CHILD_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1332436879' ) ); # http://unixtimesta.mp
+	define( 'CHILD_THEME_VERSION', '1.2.0' );
+	define( 'CHILD_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1337358100' ) ); # http://unixtimesta.mp
 
 
 /**
