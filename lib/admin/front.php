@@ -31,6 +31,7 @@ class Radio_Front_End_Customizations {
 		add_action( 'genesis_before', array ( &$this, 'radio_fb_root' ) );
 		add_action( 'genesis_before', array( &$this, 'radio_live_toolbar' ) );
 		add_action( 'genesis_after_post_content', array( &$this, 'radio_social_media_icons' ), 5 );
+		add_filter( 'genesis_pre_load_favicon', 'radio_favicon_filter' );
 		add_filter( 'body_class', array( &$this, 'body_class' ) );
 	}
 
@@ -42,6 +43,7 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	public function add_viewport_meta_tag() {
+		echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">' . "\n";
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0"/>' . "\n";
 	}
 
@@ -54,8 +56,9 @@ class Radio_Front_End_Customizations {
 	 */
 	public function scripts() {
 		/** Reference Nivo */
-		if ( is_front_page() ) 
-			wp_enqueue_script( 'nivo', CHILD_URL . '/lib/js/jquery.nivo.slider.pack.js', array( 'jquery' ), '1.0', true );
+		$nivo_toggle = genesis_get_option( 'nivo_show', 'child-settings' );
+			if ( $nivo_toggle ) 
+				wp_enqueue_script( 'nivo', CHILD_URL . '/lib/js/jquery.nivo.slider.pack.js', array( 'jquery' ), '1.0', true );
 
 		/** Enqueue theme custom script */
 		wp_enqueue_script( 'radio', CHILD_URL . '/lib/js/radio.js', array( 'jquery' ), '1.0', true );
@@ -87,7 +90,7 @@ class Radio_Front_End_Customizations {
 	 * This will allow Racebook social plug-ins to work correctly via HTML5.
 	 *
 	 * @author Greg Rickaby
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 */
 	public function radio_fb_root() { ?>
 		<div id="fb-root"></div>
@@ -137,11 +140,15 @@ class Radio_Front_End_Customizations {
 	 */
 	public function radio_social_media_icons() {
 	$showsocialicons = genesis_get_option ( 'station_social_icons', $this->settings_field );
+	$showsocialpages = genesis_get_option ( 'station_social_icons_pages', $this->settings_field );
 	$twittername  = genesis_get_option( 'station_twitter', $this->settings_field );
 	
-		if ( ! $showsocialicons )
-			return;
-			if ( !is_front_page() ) { ?>
+	if ( ! $showsocialicons ) // Show on posts
+		return;
+			if ( ! $showsocialpages ) // Show on pages
+				return;
+					if ( !is_front_page() ) // Never show on homepage
+	{ ?>
 
 	<div id="social-media-icons">
 		<div class="facebook-button">
@@ -219,6 +226,10 @@ class Radio_Front_End_Customizations {
 			wp_deregister_style( 'thickbox' );
 		}
 	}
+
+
+
+
 
 } // -------------------------- end class Radio_Front_End_Customizations -------------------------- //
 

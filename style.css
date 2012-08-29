@@ -5,15 +5,15 @@
     Author: Greg Rickaby
     Author URI: http://gregrickaby.com
 
-    Version: 1.2
+    Version: 1.3
 
     Tags: custom-background, custom-header, featured-images, threaded-comments, two-columns, three-columns, mobile responsive, responsive, timthumb, jFlow, radio
  
     Template: genesis
     Template Version: 1.8.1
 
-	License: GNU General Public License v2.0 (or later)
-	License URI: http://www.opensource.org/licenses/gpl-license.php
+    License: GNU General Public License v2.0 (or later)
+    License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 /* Table of Contents
@@ -62,6 +62,7 @@
 * DJ Rotator Widget
 * Latest News Widget
 * Photo Page & NextGen Gallery
+* Mail Chimp
 * Radio Red
 * Radio Orange
 * Radio Green
@@ -1058,7 +1059,7 @@ p.wp-caption-text {
 }
 
 a.rsswidget:visited {
-	color: #fff;
+	color: #fff !important;
 }
 
 
@@ -1387,10 +1388,6 @@ div.gform_wrapper textarea {
 	padding: 4px 5px !important;
 }
 
-div.gform_footer input.button {
-	color: #333;
-}
-
 div.gform_wrapper .ginput_complex label {
 	font-size: 14px;
 }
@@ -1567,6 +1564,15 @@ div.gform_wrapper .gform_footer {
 }
 
 
+/* Soliloquy Featured Content Slider
+------------------------------------------------------------ */
+
+.radio-soliloquy {
+	height: 300px;
+	width: 960px;
+}
+
+
 /* Homepage Columns
 ------------------------------------------------------------ */
 
@@ -1644,6 +1650,10 @@ div.gform_wrapper .gform_footer {
 	overflow: hidden;
 }
 
+.radio-latest-news p.byline.post-info {
+	font-size: 12px;
+}
+
 .radio-latest-news .even,
 .radio-latest-news .odd {
 	border: none;
@@ -1662,12 +1672,37 @@ div.gform_wrapper .gform_footer {
 	margin: 10px 0 0;
 }
 
-.radio-latest-news .post img {
+.radio-latest-news .post img,
+.radio-latest-news object,
+.radio-latest-news iframe,
+.radio-latest-news embed {
 	max-width: 380px;
+}
+
+.radio-latest-news .read-more {
+	padding: 10px 0;
 }
 
 .radio-latest-news .more-from-category {
 	padding: 5px 15px 0;
+}
+
+.radio-latest-news .ngg-galleryoverview,
+.radio-latest-news .ngg-navigation {
+	clear: both;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.radio-latest-news .ngg-gallery-thumbnail img {
+	float: left;
+	width: 115px;
+	margin: 5px;
+}
+
+.radio-latest-news .ngg-navigation .current,
+.radio-latest-news .ngg-navigation .page-numbers {
+	padding: 5px;
 }
 
 
@@ -1702,6 +1737,214 @@ div.gform_wrapper .gform_footer {
 .photos .photo-title p {
 	font-size: 13px;
 	line-height: 17px;
+}
+
+
+/* Mail Chimp
+------------------------------------------------------------ */
+
+#mc_embed_signup form {
+	max-width: 100%;
+}
+
+#mc_embed_signup h2 {
+	font-size: 24px;
+	line-height: 30px;
+	margin: 0;
+}
+
+#mc_embed_signup input {
+	border: 1px solid #999;
+	-webkit-appearance: none;
+}
+
+#mc_embed_signup input[type=checkbox]{
+	-webkit-appearance: checkbox;
+}
+
+#mc_embed_signup input[type=radio]{
+	-webkit-appearance: radio;
+}
+
+#mc_embed_signup input:focus {
+	border-color: #333;
+}
+
+#mc_embed_signup .small-meta {
+	font-size: 11px;
+}
+
+#mc_embed_signup .nowrap {
+	white-space: nowrap;
+}
+
+#mc_embed_signup .mc-field-group {
+	clear: left;
+	min-height: 50px;
+	width: 96%;
+	position: relative;
+	padding: 0 0 3px;
+}
+
+#mc_embed_signup .size1of2 {
+	clear: none;
+	float: left;
+	display: inline-block;
+	width: 46%;
+	margin: 0 7px 0 0;
+}
+
+* html #mc_embed_signup .size1of2 {
+	margin-right: 2%; /* Fix for IE6 double margins. */
+}
+
+#mc_embed_signup .mc-field-group label {
+	display: block; 
+	margin-bottom: 3px;
+}
+
+#mc_embed_signup .mc-field-group input {
+	display: block;
+	width: 95%;
+	padding: 8px 0;
+	text-indent: 5px;
+}
+
+#mc_embed_signup .mc-field-group select {
+	display: inline-block;
+	width: 95%;
+	margin: 0 0 2px 0;
+	padding: 5px 0;
+}
+
+#mc_embed_signup .datefield,
+#mc_embed_signup .phonefield-us {
+	padding: 5px 0;
+}
+
+#mc_embed_signup .datefield input,
+#mc_embed_signup .phonefield-us input {
+	display: inline;
+	width: 60px;
+	text-align: center;
+	letter-spacing: 1px;
+	margin: 0 2px;
+	padding: 5px 0 2px 0;
+
+}
+
+#mc_embed_signup .phonefield-us .phonearea input,
+#mc_embed_signup .phonefield-us .phonedetail1 input {
+	width: 40px;
+}
+
+#mc_embed_signup .datefield .monthfield input,
+#mc_embed_signup .datefield .dayfield input {
+	 width: 30px;
+}
+
+#mc_embed_signup .datefield label,
+#mc_embed_signup .phonefield-us label {
+	display: none;
+}
+
+#mc_embed_signup .indicates-required {
+	text-align: right;
+	font-size: 11px;
+	margin: 0;
+}
+
+#mc_embed_signup .asterisk {
+	font-size: 24px;
+	color: #c60;
+}
+
+#mc_embed_signup .mc-field-group .asterisk {
+	position: absolute;
+	top: 25px;
+	right: 10px;
+}
+
+#mc_embed_signup .clear {
+	clear: both;
+}
+
+#mc_embed_signup .mc-field-group.input-group ul {
+	margin: 0;
+	padding: 5px 0;
+	list-style: none;
+}
+
+#mc_embed_signup .mc-field-group.input-group ul li {
+	display: block;
+	padding: 3px 0;
+	margin: 0;
+}
+
+#mc_embed_signup .mc-field-group.input-group label {
+	display: inline;
+}
+
+#mc_embed_signup .mc-field-group.input-group input {
+	display: inline;
+	width: auto;
+	border: none;
+}
+
+#mc_embed_signup div#mce-responses {
+	clear: both;
+	float:left;
+	width: 90%;
+	margin: 0 5px;
+	padding: 0 8px;
+	overflow: hidden;
+	top: 23px;
+}
+
+#mc_embed_signup div.response {
+	float: left;
+	width: 80%;
+	font-weight: 700;
+	margin: 16px 0;
+	padding: 16px 8px 8px 0;
+	top: 24px;
+	z-index: 1;
+}
+
+#mc_embed_signup #mce-error-response {
+	display: none;
+}
+
+#mc_embed_signup #mce-success-response {
+	display: none;
+	color: #529214;
+}
+
+#mc_embed_signup label.error {
+	display: block;
+	float: none;
+	width: auto;
+	text-align: left;
+	margin: 0 0 0 16px;
+	padding: 8px 0;
+}
+
+#mc-embedded-subscribe {
+	display: block;
+	clear: both;
+	width: auto;
+	margin: 16px 0 16px 8px;
+}
+
+#mc_embed_signup #num-subscribers {
+	font-size: 18px;
+}
+
+#mc_embed_signup #num-subscribers span {
+	font-weight: 700;
+	margin: 0 8px 0 0;
+	padding: 8px;
+	border: 1px solid #ccc;
 }
 
 

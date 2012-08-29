@@ -5,6 +5,7 @@
  * Adds Radio Latest News Widget.
  *
  * @package      Radio
+ * @version      1.1
  * @since        1.0.0
  * @author       Greg Rickaby
  * @author       Justin Sternberg (@Jtsternberg)
@@ -41,22 +42,20 @@ class Radio_Latest_News extends WP_Widget {
 		$this->defaults = array(
 			'title'                   => 'Latest News',
 			'posts_cat'               => '',
+			'exclude_cat'             => 'Featured',
 			'posts_num'               => 3,
 			'posts_offset'            => 0,
 			'orderby'                 => '',
 			'order'                   => '',
-			'show_image'              => 1,
-			'image_alignment'         => '',
-			'image_size'              => '',
-			'show_gravatar'           => 0,
-			'gravatar_alignment'      => '',
+			'show_gravatar'           => 1,
+			'gravatar_alignment'      => 'left',
 			'gravatar_size'           => '',
 			'show_title'              => 1,
-			'show_byline'             => 0,
-			'post_info'               => '[post_date] ' . __( 'By', 'genesis' ) . ' [post_author_posts_link] [post_comments]',
+			'show_byline'             => 1,
+			'post_info'               => '' . __( 'By', 'genesis' ) . '[post_author_posts_link]' . __( 'on', 'genesis' ) . '[post_date] [post_comments]',
 			'show_content'            => 'content-limit',
-			'content_limit'           => '300',
-			'more_text'               => __( '[Continue...]', 'genesis' ),
+			'content_limit'           => '100',
+			'more_text'               => __( '[Read Full Story]', 'genesis' ),
 			'extra_num'               => '',
 			'extra_title'             => '',
 			'more_from_category'      => '',
@@ -78,7 +77,7 @@ class Radio_Latest_News extends WP_Widget {
 
 	}
 
-	/**
+	/*
 	 * Echo the widget content.
 	 *
 	 * @since 1.0.0
@@ -90,14 +89,15 @@ class Radio_Latest_News extends WP_Widget {
 
 		extract( $args );
 
-		/** Merge with defaults */
+		// Merge with defaults
 		$instance = wp_parse_args( (array) $instance, $this->defaults );	
 		echo $before_widget;
 
-		/** Set up the author bio */
+		// Set up the author bio
 		if ( ! empty( $instance['title'] ) )
 			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
 
+		// Query Args
 		$query_args = array(
 			'post_type' => 'post',
 			'cat'       => $instance['posts_cat'],
@@ -105,12 +105,14 @@ class Radio_Latest_News extends WP_Widget {
 			'offset'    => $instance['posts_offset'],
 			'orderby'   => $instance['orderby'],
 			'order'     => $instance['order'],
+			'category__not_in' => $instance['exclude_cat'],
 		);
 
 		$latest_news = new WP_Query( $query_args );
 		$loop_counter = 1;
 		if ( $latest_news->have_posts() ) : while ( $latest_news->have_posts() ) : $latest_news->the_post();
-
+			
+			// Add first/even/odd/last classes
 			$classes = '';
 			if ( $loop_counter == 1 ) { $classes .= 'first '; }
 			if ($loop_counter % 2 == 0) { $classes .= 'even'; } else { $classes .= 'odd'; }
@@ -118,43 +120,53 @@ class Radio_Latest_News extends WP_Widget {
 
 			echo '<div class="' . implode( ' ', get_post_class( $classes) ).'">';
 			
+			// Post Title
 			if ( ! empty( $instance['show_title'] ) )
 				printf( '<h2 class="latest-news"><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
 
+			// Gravatar
 			if ( ! empty( $instance['show_gravatar'] ) ) {
 				echo '<span class="' . esc_attr( $instance['gravatar_alignment'] ) . '">';
 				echo get_avatar( get_the_author_meta( 'ID' ), $instance['gravatar_size'] );
 				echo '</span>';
 			}
 
-			if ( ! empty( $instance['show_image'] ) )
-				echo '<a href="' . get_permalink() . '">';
-				the_post_thumbnail( 'featured', array( 'class' => 'attachment-featured' ) );
-				echo '</a>';
-
+			// Byline
 			if ( ! empty( $instance['show_byline'] ) && ! empty( $instance['post_info'] ) )
 				printf( '<p class="byline post-info">%s</p>', do_shortcode( $instance['post_info'] ) );
 
+			// Content
 			if ( ! empty( $instance['show_content'] ) ) {
+				echo '<div id="latest-news">';
+				
+				// Show Excerpt
 				if ( 'excerpt' == $instance['show_content'] )
 					the_excerpt();
+				
+				// Show Content Limit
 				elseif ( 'content-limit' == $instance['show_content'] ) {
-					if ( strip_shortcodes( get_the_content() ) != '' ) {
-						the_content_limit( (int) $instance['content_limit'], esc_html( $instance['more_text'] ) );
-				} elseif ( get_the_content() != '' && strip_shortcodes( get_the_content() ) == '' ) {
-					// do nothing
+					if ( get_the_content() != '' ) {
+						echo content( (int) $instance['content_limit'] );
+						if ( ! empty( $instance['more_text'] ) ) { ?>
+							<div class="read-more right">
+								<a class="more" href="<?php the_permalink(); ?>"><?php echo $instance['more_text']; ?></a>
+							</div>
+						<?php }
+				} 
+				// Show No Content
+				elseif ( get_the_content() != '' && strip_shortcodes( get_the_content() ) == '' ) {
 				}
 			} 
 			else
+				// Show Full Content
 				the_content( esc_html( $instance['more_text'] ) );
-
 			}
-
-			echo '</div><!--end post_class()-->'."\n\n";
+			echo '</div><!--end #latest-news-->'."\n\n";
+			echo '</div><!--end .post-->'."\n\n";
 		$loop_counter++;
 		endwhile; endif;
 
-		/** The EXTRA Posts (list) */
+		// The EXTRA Posts (list)
 		if ( ! empty( $instance['extra_num'] ) ) {
 			if ( ! empty( $instance['extra_title'] ) )
 				echo $before_title . esc_html( $instance['extra_title'] ) . $after_title;
@@ -239,7 +251,7 @@ class Radio_Latest_News extends WP_Widget {
 			<div class="genesis-widget-column-box genesis-widget-column-box-top">
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'posts_cat' ); ?>"><?php _e( 'Category', 'genesis' ); ?>:</label>
+					<label for="<?php echo $this->get_field_id( 'posts_cat' ); ?>"><?php _e( 'Show Posts From', 'genesis' ); ?>:</label>
 					<?php
 					$categories_args = array(
 						'name'            => $this->get_field_name( 'posts_cat' ),
@@ -250,6 +262,20 @@ class Radio_Latest_News extends WP_Widget {
 						'hide_empty'      => '0',
 					);
 					wp_dropdown_categories( $categories_args ); ?>
+				</p>
+
+				<p>
+					<label for="<?php echo $this->get_field_id( 'exclude_cat' ); ?>"><?php _e( 'Exclude Posts From', 'genesis' ); ?>:</label>
+					<?php
+					$exclude_categories_args = array(
+						'name'            => $this->get_field_name( 'exclude_cat' ),
+						'selected'        => $instance['exclude_cat'],
+						'orderby'         => 'Name',
+						'hierarchical'    => 1,
+						'show_option_all' => __( 'All Categories', 'genesis' ),
+						'hide_empty'      => '0',
+					);
+					wp_dropdown_categories( $exclude_categories_args ); ?>
 				</p>
 
 				<p>
@@ -315,29 +341,13 @@ class Radio_Latest_News extends WP_Widget {
 			<div class="genesis-widget-column-box">
 
 				<p>
-					<input id="<?php echo $this->get_field_id( 'show_image' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_image' ); ?>" value="1" <?php checked( $instance['show_image'] ); ?>/>
-					<label for="<?php echo $this->get_field_id( 'show_image' ); ?>"><?php _e( 'Show Featured Image', 'genesis' ); ?></label>
+					<input id="<?php echo $this->get_field_id( 'more_from_category' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'more_from_category' ); ?>" value="1" <?php checked( $instance['more_from_category'] ); ?>/>
+					<label for="<?php echo $this->get_field_id( 'more_from_category' ); ?>"><?php _e( 'Show Category Archive Link', 'genesis' ); ?></label>
 				</p>
 
 				<p>
-					<label for="<?php echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image Size', 'genesis' ); ?>:</label>
-					<select id="<?php echo $this->get_field_id( 'image_size' ); ?>" name="<?php echo $this->get_field_name( 'image_size' ); ?>">
-						<option value="thumbnail">thumbnail (<?php echo get_option( 'thumbnail_size_w' ); ?>x<?php echo get_option( 'thumbnail_size_h' ); ?>)</option>
-						<?php
-						$sizes = genesis_get_additional_image_sizes();
-						foreach( (array) $sizes as $name => $size )
-							echo '<option value="'.esc_attr( $name ).'" '.selected( $name, $instance['image_size'], FALSE ).'>'.esc_html( $name ).' ( '.$size['width'].'x'.$size['height'].' )</option>';
-						?>
-					</select>
-				</p>
-
-				<p>
-					<label for="<?php echo $this->get_field_id( 'image_alignment' ); ?>"><?php _e( 'Image Alignment', 'genesis' ); ?>:</label>
-					<select id="<?php echo $this->get_field_id( 'image_alignment' ); ?>" name="<?php echo $this->get_field_name( 'image_alignment' ); ?>">
-						<option value="alignnone">- <?php _e( 'None', 'genesis' ); ?> -</option>
-						<option value="alignleft" <?php selected( 'alignleft', $instance['image_alignment'] ); ?>><?php _e( 'Left', 'genesis' ); ?></option>
-						<option value="alignright" <?php selected( 'alignright', $instance['image_alignment'] ); ?>><?php _e( 'Right', 'genesis' ); ?></option>
-					</select>
+					<label for="<?php echo $this->get_field_id( 'more_from_category_text' ); ?>"><?php _e( 'Link Text', 'genesis' ); ?>:</label>
+					<input type="text" id="<?php echo $this->get_field_id( 'more_from_category_text' ); ?>" name="<?php echo $this->get_field_name( 'more_from_category_text' ); ?>" value="<?php echo esc_attr( $instance['more_from_category_text'] ); ?>" class="widefat" />
 				</p>
 
 			</div>
@@ -393,20 +403,6 @@ class Radio_Latest_News extends WP_Widget {
 				<p>
 					<label for="<?php echo $this->get_field_id( 'extra_num' ); ?>"><?php _e( 'Number of Posts to Show', 'genesis' ); ?>:</label>
 					<input type="text" id="<?php echo $this->get_field_id( 'extra_num' ); ?>" name="<?php echo $this->get_field_name( 'extra_num' ); ?>" value="<?php echo esc_attr( $instance['extra_num'] ); ?>" size="2" />
-				</p>
-
-			</div>
-
-			<div class="genesis-widget-column-box">
-
-				<p>
-					<input id="<?php echo $this->get_field_id( 'more_from_category' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'more_from_category' ); ?>" value="1" <?php checked( $instance['more_from_category'] ); ?>/>
-					<label for="<?php echo $this->get_field_id( 'more_from_category' ); ?>"><?php _e( 'Show Category Archive Link', 'genesis' ); ?></label>
-				</p>
-
-				<p>
-					<label for="<?php echo $this->get_field_id( 'more_from_category_text' ); ?>"><?php _e( 'Link Text', 'genesis' ); ?>:</label>
-					<input type="text" id="<?php echo $this->get_field_id( 'more_from_category_text' ); ?>" name="<?php echo $this->get_field_name( 'more_from_category_text' ); ?>" value="<?php echo esc_attr( $instance['more_from_category_text'] ); ?>" class="widefat" />
 				</p>
 
 			</div>

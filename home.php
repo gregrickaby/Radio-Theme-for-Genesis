@@ -15,10 +15,49 @@ function radio_grab_image() {
 	return $first_img;
 }
 
+/**
+ * Set the excerpt limit
+ * 
+ * @author Bavotasan
+ * @lin http://bavotasan.com/2009/limiting-the-number-of-words-in-your-excerpt-or-content-in-wordpress/
+ * @since 1.3.0
+ */
+function excerpt( $limit ) {
+	$excerpt = explode( ' ', get_the_excerpt(), $limit );
+		if ( count($excerpt)>=$limit ) {
+		array_pop( $excerpt );
+	$excerpt = implode( " ",$excerpt ).'...';
+		} else {
+	$excerpt = implode( " ",$excerpt );
+		}	
+	$excerpt = preg_replace( '`\[[^\]]*\]`','',$excerpt );
+		return $excerpt;
+}
+
+
+/**
+ * Set the content limit
+ * 
+ * @author Bavotasan
+ * @lin http://bavotasan.com/2009/limiting-the-number-of-words-in-your-excerpt-or-content-in-wordpress/
+ * @since 1.3.0
+ */
+function content( $limit ) {
+	$content = explode( ' ', get_the_content(), $limit );
+		if ( count( $content)>=$limit ) {
+			array_pop( $content );
+			$content = implode( " ",$content ).'...';
+		} else {
+	$content = implode( " ",$content );
+		}	
+	// $content = preg_replace('/\[.+\]/','', $content); un-comment to remove shortcodes
+	$content = apply_filters( 'the_content', $content ); 
+	// $content = str_replace(']]>', ']]&gt;', $content); un-comment to remove shortcodes
+		return $content;
+}
+
 
 add_action( 'genesis_after_header', 'radio_featured_content_slider' );
-
-
 /**
  * Build the Nivo featured content slider.
  * 
@@ -31,7 +70,9 @@ $nivo_category = genesis_get_option( 'nivo_category', 'child-settings' );
 $nivo_order = genesis_get_option( 'nivo_order', 'child-settings' );
 $nivo_limit = genesis_get_option( 'nivo_limit', 'child-settings' );
 $nivo_sort = genesis_get_option( 'nivo_sort', 'child-settings' );
-	if ( $nivo_toggle ) { ?>
+$solil_id = genesis_get_option( 'solil_id', 'child-settings' );
+
+if ( $nivo_toggle ) { ?>
 
 	<div class="slider-wrapper theme-default">
 		<div class="ribbon"></div>
@@ -53,7 +94,13 @@ $nivo_sort = genesis_get_option( 'nivo_sort', 'child-settings' );
 			<?php endif; wp_reset_query(); ?>
 		</div>
 	</div>
-<?php }}
+<?php } ?>
+	<?php // Check for Soliloquy Slider, if found, display it
+	if ( ( ! $nivo_toggle ) && function_exists( 'soliloquy_slider' ) ) { ?>
+	<div class="slider-wrapper radio-soliloquy">
+		<?php soliloquy_slider( $solil_id ); ?>
+	</div>
+<?php } }
 
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );

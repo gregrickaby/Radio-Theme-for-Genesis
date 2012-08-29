@@ -19,8 +19,22 @@
 /** Define Theme Info Constants */
 	define( 'CHILD_THEME_NAME', 'Radio Theme' );
 	define( 'CHILD_THEME_URL', 'http://radio.gregrickaby.com' );
-	define( 'CHILD_THEME_VERSION', '1.2.0' );
-	define( 'CHILD_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1337358100' ) ); # http://unixtimesta.mp
+	define( 'CHILD_THEME_VERSION', '1.3.0' );
+	define( 'CHILD_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1346270363' ) ); # http://unixtimesta.mp
+
+
+add_action( 'admin_notices', 'radio_errors' );
+/**
+ * Check to to see if A) /custom/ exsist B) permissions are writable
+ * Echo the error nag upon failure
+ *
+ * @since 1.3.0
+ */
+
+function radio_errors() {
+	if (! is_writable( CHILD_DIR . '/custom/custom.css' ) ) 
+		echo '<div class="error"><p><strong>ERROR!</strong> You must rename <strong>/custom-sample/</strong> to <strong>/custom/</strong> and set permissions to <strong>755</strong></p></div>';
+}
 
 
 /**
@@ -197,8 +211,12 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 
 	public function social_info() {		
 		echo '<input type="checkbox" name="' . $this->get_field_name( 'station_social_icons' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'station_social_icons' ) ) . ' />';
-		echo '<label> Show Social Media Icons? </label>';
-		echo '<p><span class="description">Social media icons will be added to the bottom both posts and pages.</span></p>';
+		echo '<label> Show Social Media Icons on Posts?</label>';
+		echo '<p><span class="description">Check to add Social Media Icons to the bottom of all posts.</span></p>';
+
+		echo '<input type="checkbox" name="' . $this->get_field_name( 'station_social_icons_pages' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'station_social_icons_pages' ) ) . ' />';
+		echo '<label> Show Social Media Icons on Pages?</label>';
+		echo '<p><span class="description">Check to add Social Media Icons to the bottom of all pages.</span></p>';
 
 		echo '<label>Twitter Username: </label>';
 		echo '<input type="text" name="' . $this->get_field_name( 'station_twitter' ) .'" id="' . $this->get_field_id( 'station_twitter' ) . '" value="' . esc_attr( $this->get_field_value( 'station_twitter' ) ) . '" size="40" />';
@@ -212,10 +230,6 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		echo '<label>Facebook APP ID: </label>';
 		echo '<input type="text" name="' . $this->get_field_name( 'station_facebook_app_id' ) .'" id="' . $this->get_field_id( 'station_facebook_app_id' ) . '" value="' . esc_attr( $this->get_field_value( 'station_facebook_app_id' ) ) . '" size="40" />';
 		echo '<p><span class="description">Obtain your App ID here: https://developers.facebook.com/apps</span></p>';
-
-		echo '<label>Instagram Username: </label>';
-		echo '<input type="text" name="' . $this->get_field_name( 'station_instagram' ) .'" id="' . $this->get_field_id( 'station_instagram' ) . '" value="' . esc_attr( $this->get_field_value( 'station_instagram' ) ) . '" size="40" />';
-		echo '<p><span class="description">StationName</span></p>';
 	}
 
 
@@ -229,7 +243,7 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		
 		echo '<input type="checkbox" name="' . $this->get_field_name( 'nivo_show' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'nivo_show' ) ) . ' />';
 		echo '<label> Show Featured Content Slider?</label>';
-		echo '<p><span class="description">Check to display the featured content slider on your homepage</span></p>';
+		echo '<p><span class="description">Check to display the featured content slider on your homepage. If using another slider, un-check this setting!</span></p>';
 
 		$nivo_post_limit = array(
 			'10'	=> '10',
@@ -323,6 +337,9 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 		echo '<label>Speed: </label><input type="text" name="' . $this->get_field_name( 'nivo_speed' ) . '" id="' . $this->get_field_id( 'nivo_speed' ) . '" value="' . esc_attr( $this->get_field_value( 'nivo_speed' ) ) . '" class="small-text" />';
 		echo 'Default: <code class="description">3000</code>';
 		echo '<p><span class="description">Set the transition speed of the featured content slider.</span></p>';
+		
+		echo '<label>Soliloquy ID: </label><input type="text" name="' . $this->get_field_name( 'solil_id' ) . '" id="' . $this->get_field_id( 'solil_id' ) . '" value="' . esc_attr( $this->get_field_value( 'solil_id' ) ) . '" class="small-text" />';
+		echo '<p><span class="description">*Optional: Enter the ID number of the Soliloquy Slider you want displayed on the homepage.</span></p>';
 	}
 	
 	/**
