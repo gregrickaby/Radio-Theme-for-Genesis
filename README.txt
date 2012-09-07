@@ -56,6 +56,11 @@ I'd like personally thank the following people for their help and contributions 
 
 <h3>CHANGE LOG</h3>
 
+<strong>v1.3.1</strong>
+- Fixed theme update rename error
+- Cleaned up automatic update code
+- Moved PSD folder inside /custom-sample/
+
 <strong>v1.3</strong>
 - Add support for Soliloquy Slider
 - Add support for Mail Chimp naked forms
@@ -71,7 +76,7 @@ I'd like personally thank the following people for their help and contributions 
 - Radio Latest News widget now grabs the content verbatim and displays it (unless showing excerpt)
 - Fixed RSS visited link
 
-<strong> v1.2</strong>
+<strong>v1.2</strong>
 - Add support for automatic updates
 - Option to turn Nivo Slider on/off
 - Add support for Facebook page and Facebook APP ID Option

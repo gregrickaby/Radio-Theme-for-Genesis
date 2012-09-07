@@ -17,10 +17,10 @@ class ThemeUpdateChecker {
 	public $metadataUrl = '';                 //The URL of the theme's metadata file.
 	public $enableAutomaticChecking = true;   //Enable/disable automatic update checks.
 
-
 	protected $optionName = '';               //Where to store update info.
 	protected $automaticCheckDone = false;
 	protected static $filterPrefix = 'tuc_request_update_';
+
 
 	/**
 	 * Class constructor.
@@ -35,9 +35,9 @@ class ThemeUpdateChecker {
 		$this->enableAutomaticChecking = $enableAutomaticChecking;
 		$this->theme = $theme;
 		$this->optionName = 'external_theme_updates-'.$this->theme;
-		
-		$this->installHooks();		
+		$this->installHooks();
 	}
+
 
 	/**
 	 * Install the hooks required to run periodic update checks and inject update info 
@@ -51,14 +51,15 @@ class ThemeUpdateChecker {
 		if ( $this->enableAutomaticChecking ){
 			add_filter( 'pre_set_site_transient_update_themes', array($this, 'onTransientUpdate' ));
 		}
-		
+
 		//Insert our update info into the update list maintained by WP.
 		add_filter( 'site_transient_update_themes', array( $this,'injectUpdate' )); 
-		
+
 		//Delete our update info when WP deletes its own.
 		//This usually happens when a theme is installed, removed or upgraded.
 		add_action( 'delete_site_transient_update_themes', array($this, 'deleteStoredData' ));
 	}
+
 
 	/**
 	 * Retrieve update info from the configured metadata URL.
@@ -84,15 +85,15 @@ class ThemeUpdateChecker {
 			),
 		);
 		$options = apply_filters( self::$filterPrefix.'options-'.$this->theme, array() );
-		
+
 		$url = $this->metadataUrl; 
 		if ( !empty($queryArgs) ){
 			$url = add_query_arg($queryArgs, $url);
 		}
-		
+
 		//Send the request.
 		$result = wp_remote_get( $url, $options );
-		
+
 		//Try to parse the response
 		$themeUpdate = null;
 		$code = wp_remote_retrieve_response_code( $result );
@@ -104,10 +105,11 @@ class ThemeUpdateChecker {
 				$themeUpdate = null;
 			}
 		}
-		
+
 		$themeUpdate = apply_filters( self::$filterPrefix.'result-'.$this->theme, $themeUpdate, $result );
 		return $themeUpdate;
 	}
+
 
 	/**
 	 * Get the currently installed version of our theme.
@@ -123,6 +125,7 @@ class ThemeUpdateChecker {
 		return '';
 	}
 
+
 	/**
 	 * Check for theme updates. 
 	 * 
@@ -136,14 +139,15 @@ class ThemeUpdateChecker {
 			$state->checkedVersion = '';
 			$state->update = null;
 		}
-		
+
 		$state->lastCheck = time();
 		$state->checkedVersion = $this->getInstalledVersion();
 		update_option( $this->optionName, $state ); //Save before checking in case something goes wrong 
-		
+
 		$state->update = $this->requestUpdate();
 		update_option( $this->optionName, $state );
 	}
+
 
 	/**
 	 * Run the automatic update check, but no more than once per pageload.
@@ -160,6 +164,7 @@ class ThemeUpdateChecker {
 		return $value;
 	}
 
+
 	/**
 	 * Insert the latest update (if any) into the update list maintained by WP.
 	 * 
@@ -173,9 +178,10 @@ class ThemeUpdateChecker {
 		if ( !empty( $state ) && isset( $state->update ) && !empty( $state->update ) ){
 			$updates->response[$this->theme] = $state->update->toWpFormat();
 		}
-		
+
 		return $updates;
 	}
+
 
 	/**
 	 * Delete any stored book-keeping data.
@@ -184,7 +190,8 @@ class ThemeUpdateChecker {
 	 */
 	public function deleteStoredData() {
 		delete_option( $this->optionName );
-	} 
+	}
+
 
 	/**
 	 * Register a callback for filtering query arguments. 
@@ -199,6 +206,7 @@ class ThemeUpdateChecker {
 		add_filter( self::$filterPrefix.'query_args-'.$this->themeName, $callback );
 	}
 
+
 	/**
 	 * Register a callback for filtering arguments passed to wp_remote_get().
 	 * 
@@ -212,6 +220,7 @@ class ThemeUpdateChecker {
 	public function addHttpRequestArgFilter( $callback ) {
 		add_filter( self::$filterPrefix.'options-'.$this->themeName, $callback );
 	}
+
 
 	/**
 	 * Register a callback for filtering the theme info retrieved from the external API.
@@ -231,7 +240,9 @@ class ThemeUpdateChecker {
 	}
 }
 
+
 endif;
+
 
 if ( !class_exists( 'ThemeUpdate' ) ):
 
@@ -247,7 +258,8 @@ class ThemeUpdate {
 	public $version;      //Version number.
 	public $details_url;  //The URL where the user can learn more about this version. 
 	public $download_url; //The download URL for this version of the theme. Optional.
-	
+
+
 	/**
 	 * Create a new instance of ThemeUpdate from its JSON-encoded representation.
 	 * 
@@ -259,7 +271,7 @@ class ThemeUpdate {
 		if ( empty( $apiResponse ) || !is_object( $apiResponse ) ){
 			return null;
 		}
-		
+
 		//Very, very basic validation.
 		$valid = isset( $apiResponse->version ) && !empty( $apiResponse->version ) && isset( $apiResponse->details_url ) && !empty( $apiResponse->details_url );
 		if ( !$valid ){
@@ -270,9 +282,10 @@ class ThemeUpdate {
 		foreach( get_object_vars($apiResponse) as $key => $value ){
 			$update->$key = $value;
 		}
-		
+
 		return $update;
 	}
+
 
 	/**
 	 * Transform the update into the format expected by the WordPress core.
@@ -293,6 +306,7 @@ class ThemeUpdate {
 }
 
 endif;
+
 
 $example_update_checker = new ThemeUpdateChecker (
 	'radio',

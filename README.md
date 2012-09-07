@@ -56,6 +56,11 @@ I'd like personally thank the following people for their help and contributions 
 
 <h3>CHANGE LOG</h3>
 
+<strong>v1.3.1</strong>
+- Fixed theme update rename error
+- Cleaned up automatic update code
+- Moved PSD folder to /custom-sample/
+
 <strong>v1.3</strong>
 - Add support for Soliloquy Slider
 - Add support for Mail Chimp naked forms
