@@ -1,4 +1,4 @@
-<h3>RADIO THEME v1.3</h3>
+<h3>RADIO THEME v1.3.1</h3>
 <a href="http://radio.gregrickaby.com">http://radio.gregrickaby.com</a>
 
 <h3>REQUIREMENTS</h3>
