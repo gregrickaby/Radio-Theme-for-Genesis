@@ -114,6 +114,7 @@ class cmb_Meta_Box {
 	
 	/**
 	 * Show On Filters
+
 	 * Use the 'cmb_show_on' filter to further refine the conditions under which a metabox is displayed.
 	 * Below you can limit it by ID and page template
 	 */
@@ -208,6 +209,7 @@ class cmb_Meta_Box {
 				case 'text_date':
 					echo '<input class="cmb_text_small cmb_datepicker" type="text" name="', $field['id'], '" id="', $field['id'], '" value="', '' !== $meta ? $meta : $field['std'], '" /><span class="cmb_metabox_description">', $field['desc'], '</span>';
 					break;
+
 				case 'text_date_timestamp':
 					echo '<input class="cmb_text_small cmb_datepicker" type="text" name="', $field['id'], '" id="', $field['id'], '" value="', '' !== $meta ? date( 'm\/d\/Y', $meta ) : $field['std'], '" /><span class="cmb_metabox_description">', $field['desc'], '</span>';
 					break;
@@ -334,6 +336,8 @@ class cmb_Meta_Box {
 						}
 						echo' /><label>', $term->name , '</label></li>';
 					}
+					echo '</ul>';
+					echo '<span class="cmb_metabox_description">', $field['desc'], '</span>';
 				break;
 				case 'file_list':
 					echo '<input class="cmb_upload_file" type="text" size="36" name="', $field['id'], '" value="" />';

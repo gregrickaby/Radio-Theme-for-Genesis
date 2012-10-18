@@ -24,7 +24,8 @@ class Radio_Front_End_Customizations {
 	private $settings_field = 'child-settings';
 
 	public function __construct() {
-		add_action( 'genesis_meta', array( &$this, 'add_viewport_meta_tag' ) );
+		add_action( 'genesis_meta', array( &$this, 'add_dns_pre_fetch' ), 1 );
+		add_action( 'genesis_meta', array( &$this, 'add_viewport_meta_tag' ), 2 );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'styles' ) ); // Yes, hook to wp_enqueue_scripts
 		add_action( 'wp_print_styles', array( $this, 'radio_manage_scripts' ) );
@@ -33,6 +34,20 @@ class Radio_Front_End_Customizations {
 		add_action( 'genesis_after_post_content', array( &$this, 'radio_social_media_icons' ), 5 );
 		add_filter( 'genesis_pre_load_favicon', 'radio_favicon_filter' );
 		add_filter( 'body_class', array( &$this, 'body_class' ) );
+	}
+
+
+	/**
+	 * Add DNS Pre-fetching for outside scripts and styles.
+	 *
+	 * @author Greg Rickaby
+	 * @since 1.3.1
+	 */
+	public function add_dns_pre_fetch() {
+		echo '<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">' . "\n";
+		echo '<link rel="dns-prefetch" href="//fonts.googleapis.com">' . "\n";
+		echo '<link rel="dns-prefetch" href="//themes.googleusercontent.com">' . "\n";
+		echo '<link rel="dns-prefecth" href="//connect.facebook.net">' . "\n";
 	}
 
 
@@ -58,7 +73,7 @@ class Radio_Front_End_Customizations {
 		/** Reference Nivo */
 		$nivo_toggle = genesis_get_option( 'nivo_show', 'child-settings' );
 			if ( $nivo_toggle ) 
-				wp_enqueue_script( 'nivo', CHILD_URL . '/lib/js/jquery.nivo.slider.pack.js', array( 'jquery' ), '1.0', true );
+				wp_enqueue_script( 'nivo', '//cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.1/jquery.nivo.slider.pack.js', array( 'jquery' ), '3.1', true );
 
 		/** Enqueue theme custom script */
 		wp_enqueue_script( 'radio', CHILD_URL . '/lib/js/radio.js', array( 'jquery' ), '1.0', true );
@@ -249,19 +264,6 @@ function radio_customizations_init() {
 }
 
 
-add_action( 'widgets_init', 'radio_load_widgets' );
-/**
- * Replace Genesis Featured Post Widget with Radio Latest News Widget
- *
- * @author Greg Rickaby
- * @since 1.0.0
- */
-function radio_load_widgets() {
-	unregister_widget( 'Genesis_Featured_Post' );
-	register_widget( 'Radio_Latest_News' );
-}
-
-
 add_filter( 'user_contactmethods', 'radio_user_contact_methods' );
 /**
  * Customize Contact Methods
@@ -277,30 +279,4 @@ function radio_user_contact_methods( $contactmethods ) {
 		'skype'    => __( 'Skype' )
 	);
 	return apply_filters( 'contactmethods',$contactmethods );
-}
-
-
-add_filter( 'http_request_args', 'radio_dont_update_theme', 5, 2 );
-/**
- * Don't Update Theme
- * @since 1.0.0
- *
- * If there is a theme in the repo with the same name, 
- * this prevents WP from prompting an update.
- *
- * @author Mark Jaquith
- * @link http://markjaquith.wordpress.com/2009/12/14/excluding-your-plugin-or-theme-from-update-checks/
- *
- * @param array $r, request arguments
- * @param string $url, request url
- * @return array request arguments
- */
-function radio_dont_update_theme( $r, $url ) {
-	if ( 0 !== strpos( $url, 'http://api.wordpress.org/themes/update-check' ) )
-		return $r; // Not a theme update request. Bail immediately.
-	$themes = unserialize( $r['body']['themes'] );
-	unset( $themes[ get_option( 'template' ) ] );
-	unset( $themes[ get_option( 'stylesheet' ) ] );
-	$r['body']['themes'] = serialize( $themes );
-	return $r;
 }

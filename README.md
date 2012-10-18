@@ -32,6 +32,7 @@
 - <a href="http://wordpress.org/extend/plugins/genesis-simple-edits/" target="_blank">Genesis Simple Edits</a>
 - <a href="http://wordpress.org/extend/plugins/disqus-comment-system/" target="_blank">Disqus Comment System</a>
 - <a href="http://wordpress.org/extend/plugins/simple-social-icons/" target="_blank">Simple Social Icons</a>
+- <a href="http://soliloquywp.com/">Soliloquy Slider</a>
 
 <h3>PHOTO GALLERY</h3>
 1. Add new <a href="/wp-admin/post-new.php?post_type=page">PAGE</a> and name it "Photos"
@@ -57,9 +58,12 @@ I'd like personally thank the following people for their help and contributions 
 <h3>CHANGE LOG</h3>
 
 <strong>v1.3.1</strong>
-- Fixed theme update rename error
-- Cleaned up automatic update code
-- Moved PSD folder to /custom-sample/
+- Added DNS pre-fetching
+- Removed Automatic Updates
+- Removed Radio Featured Widget in favor for Genesis Featured Widget Amplified
+- Change featured to: add_image_size ( 'featured', 370, 116, true );
+- Moved PSD folder inside /custom-sample/
+- New Listen Live button
 
 <strong>v1.3</strong>
 - Add support for Soliloquy Slider
@@ -76,7 +80,7 @@ I'd like personally thank the following people for their help and contributions 
 - Radio Latest News widget now grabs the content verbatim and displays it (unless showing excerpt)
 - Fixed RSS visited link
 
-<strong> v1.2</strong>
+<strong>v1.2</strong>
 - Add support for automatic updates
 - Option to turn Nivo Slider on/off
 - Add support for Facebook page and Facebook APP ID Option
@@ -99,3 +103,4 @@ I'd like personally thank the following people for their help and contributions 
 - DJ bio pages with social media streams
 - Widget navigation drop-downs
 - Add support for Woo Flex Slider and WP-Cycle
+- Change to an 1140 grid

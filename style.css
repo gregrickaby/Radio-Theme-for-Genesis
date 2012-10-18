@@ -60,9 +60,10 @@
 * Homepage Columns
 * Social Media Icons
 * DJ Rotator Widget
-* Latest News Widget
+* Genesis Featured Widget Amplified
 * Photo Page & NextGen Gallery
 * Mail Chimp
+* Listen Live Button
 * Radio Red
 * Radio Orange
 * Radio Green
@@ -81,7 +82,7 @@
 /* Import Fonts
 ------------------------------------------------------------ */
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
 
 
 /* Defaults
@@ -724,7 +725,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Open Sans Condensed', arial, serif;
+	font-family: 'Open Sans', arial, serif;
 	font-weight: 700;
 	line-height: 1.25;
 	margin: 0 0 10px;
@@ -1564,15 +1565,6 @@ div.gform_wrapper .gform_footer {
 }
 
 
-/* Soliloquy Featured Content Slider
------------------------------------------------------------- */
-
-.radio-soliloquy {
-	height: 300px;
-	width: 960px;
-}
-
-
 /* Homepage Columns
 ------------------------------------------------------------ */
 
@@ -1640,69 +1632,30 @@ div.gform_wrapper .gform_footer {
 	text-align: left;
 }
 
-/* Latest News Widget
+/* Genesis Featured Widget Amplified
 ------------------------------------------------------------ */
 
-.radio-latest-news .post {
-	clear: both;
-	margin: 0 0 15px;
-	padding: 0 10px 15px 10px;
-	overflow: hidden;
+.sidebar .featuredpost {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
 }
 
-.radio-latest-news p.byline.post-info {
-	font-size: 12px;
+.sidebar .featuredpost h2,
+.sidebar .featuredpost p {
+	padding: 0 10px 0 10px;
 }
 
-.radio-latest-news .even,
-.radio-latest-news .odd {
-	border: none;
-	border-bottom: 1px dotted #ccc;
+.featuredpage img,
+.featuredpost img {
+	width: 95%;
+	padding: 4px 0 4px 0;
 }
 
-.radio-latest-news .last {
-	border: none;
-}
-
-.radio-latest-news h2.latest-news a {
-	font-size: 20px;
-}
-
-.radio-latest-news p {
-	margin: 10px 0 0;
-}
-
-.radio-latest-news .post img,
-.radio-latest-news object,
-.radio-latest-news iframe,
-.radio-latest-news embed {
-	max-width: 380px;
-}
-
-.radio-latest-news .read-more {
-	padding: 10px 0;
-}
-
-.radio-latest-news .more-from-category {
-	padding: 5px 15px 0;
-}
-
-.radio-latest-news .ngg-galleryoverview,
-.radio-latest-news .ngg-navigation {
-	clear: both;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.radio-latest-news .ngg-gallery-thumbnail img {
-	float: left;
-	width: 115px;
-	margin: 5px;
-}
-
-.radio-latest-news .ngg-navigation .current,
-.radio-latest-news .ngg-navigation .page-numbers {
-	padding: 5px;
+.sidebar .featuredpost iframe,
+.sidebar .featuredpost object {
+	height: 278px !important;
+	width: 370px !important;
+	max-width: 370px !important;
 }
 
 
@@ -1947,6 +1900,45 @@ div.gform_wrapper .gform_footer {
 	border: 1px solid #ccc;
 }
 
+/* Listen Live Button
+------------------------------------------------------------ */
+
+.listen-live-btn {
+	background: url(images/listen-live-gradient.png) 0 0;
+	height: 55px;
+	width: 194px;
+	margin: 20px auto 50px;
+	padding: 5px 10px;
+	border: 1px solid #333;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	-moz-border-radius: 5px;
+	-moz-box-shadow: 0 1px 1px #666;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0 1px 1px #666;
+	border-radius: 5px;
+	box-shadow: 0 1px 1px #666;
+	cursor: pointer;
+}
+
+.listen-live-btn:hover {
+	background: url(images/listen-live-gradient.png) 0 -63px;
+	text-decoration: none;
+}
+
+.listen-live-btn a {
+	font-family: 'Open Sans', arial, serif;
+	font-size: 30px;
+	font-weight: 700;
+	color: #fff !important;
+	line-height: 22px;
+	text-decoration: none;
+	text-shadow: 1px 1px #333;
+	position: relative;
+	top: 15px;
+	left: 11px;
+}
 
 /* Radio Red
 ------------------------------------------------------------ */
@@ -2465,7 +2457,7 @@ div.gform_wrapper .gform_footer {
 		width: 100%;
 		margin: 0 auto;
 	}
-	
+
 	#live-toolbar,
 	.live-toolbar-wrap,
 	.archive-page,
@@ -2500,7 +2492,7 @@ div.gform_wrapper .gform_footer {
 		box-shadow: none;
 		margin: 35px 0 0;
 	}
-	
+
 	#description,
 	#footer .creds,
 	#footer .gototop,
@@ -2552,7 +2544,7 @@ div.gform_wrapper .gform_footer {
 	#respond {
 		padding: 0 20px;
 	}
-	
+
 	#home-column-1,
 	#home-column-2 {
 		clear: both;
@@ -2563,7 +2555,7 @@ div.gform_wrapper .gform_footer {
 		margin: 0 20px 40px;
 	}
 	
-		
+
 	#disqus_thread {
 		width: 90%;
 		margin: 0 20px 20px 20px;
@@ -2596,7 +2588,7 @@ div.gform_wrapper .gform_footer {
 	.menu li ul a {
 		width: 100%;
 	}
-	
+
 	.five-sixths,
 	.four-fifths,
 	.four-sixths,
@@ -2653,15 +2645,11 @@ div.gform_wrapper .gform_footer {
 	.menu li ul ul {
 		margin: 0;
 	}
-	
+
 	.sidebar ul.menu ul.sub-menu li {
 		display: none;
 	}
-	
-	.radio-latest-news .post img,
-	.radio-latest-news .img_wrapper {
-		max-width: 300px;
-	}
+
 	
 	#social-media-icons {
 		display: none;

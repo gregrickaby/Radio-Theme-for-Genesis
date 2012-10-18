@@ -18,13 +18,11 @@ require_once( TEMPLATEPATH.'/lib/init.php' );
 if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) ) {
 		include_once( CHILD_DIR . '/lib/admin/admin.php' );
 		include_once( CHILD_DIR . '/lib/admin/front.php' );
-		include_once( CHILD_DIR . '/lib/admin/update.php' );
 		include_once( CHILD_DIR . '/lib/scripts/opengraph-meta.php' );
-		include_once( CHILD_DIR . '/lib/widgets/radio-latest-news-widget.php' );
 }
 
 /** Image Sizes */
-add_image_size ( 'featured', 370, 150, true );
+add_image_size ( 'featured', 370, 116, true );
 add_image_size ( 'nivoslider', 960, 300, true );
 add_image_size ( 'djprofile', 240, 220, true );
 
@@ -32,7 +30,10 @@ add_image_size ( 'djprofile', 240, 220, true );
 add_theme_support( 'genesis-menus', array( 'primary' => 'Primary Navigation' ) );
 
 /** Add support for custom background */
-add_custom_background();
+add_theme_support( 'custom-background', array( 'default-color' => '000000',) );
+
+/** This theme styles the visual editor with editor-style.css to match the theme style. */
+add_editor_style();
 
 /** Add support for custom header */
 add_theme_support( 'genesis-custom-header', array( 'width' => 220, 'height' => 100 ) );

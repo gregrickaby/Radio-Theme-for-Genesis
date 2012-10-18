@@ -86,8 +86,7 @@ if ( $nivo_toggle ) { ?>
 				);
 
 			$query = new WP_Query( $args ); 
-			if ( $query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
-			$do_not_duplicate = $post->ID; ?>
+			if ( $query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post(); ?>
 			<a href="<?php the_permalink(); ?>" /><img src="<?php echo CHILD_URL; ?>/lib/scripts/timthumb.php?src=<?php echo radio_grab_image(); ?>&amp;h=300&amp;w=960" alt="<?php the_title(); ?>" title="<?php the_title(); ?>" /></a>
 			<?php endwhile; else : ?>
 				<p>Sorry, no posts found</p>
