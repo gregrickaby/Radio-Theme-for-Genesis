@@ -19,12 +19,17 @@ if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) ) {
 		include_once( CHILD_DIR . '/lib/admin/admin.php' );
 		include_once( CHILD_DIR . '/lib/admin/front.php' );
 		include_once( CHILD_DIR . '/lib/scripts/opengraph-meta.php' );
+		include_once( CHILD_DIR . '/custom/custom_functions.php' );
 }
 
 /** Image Sizes */
 add_image_size ( 'featured', 370, 116, true );
 add_image_size ( 'nivoslider', 960, 300, true );
 add_image_size ( 'djprofile', 240, 220, true );
+
+/** Add support for oEmbeds */
+if ( ! isset( $content_width ) )
+	$content_width = 600;
 
 /** Menus */
 add_theme_support( 'genesis-menus', array( 'primary' => 'Primary Navigation' ) );

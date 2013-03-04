@@ -1,4 +1,4 @@
-<h3>RADIO THEME v1.3.1</h3>
+<h3>RADIO THEME v1.3.2</h3>
 <a href="http://radio.gregrickaby.com">http://radio.gregrickaby.com</a>
 
 <h3>REQUIREMENTS</h3>
@@ -56,6 +56,10 @@ I'd like personally thank the following people for their help and contributions 
 - <a href="http://billerickson.net/">Bill Erickson</a>
 
 <h3>CHANGE LOG</h3>
+
+<strong>v1.3.2</strong>
+- Added support for oEmbed
+- Added custom_functions.php
 
 <strong>v1.3.1</strong>
 - Added DNS pre-fetching
