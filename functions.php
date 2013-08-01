@@ -41,7 +41,7 @@ add_theme_support( 'custom-background', array( 'default-color' => '000000',) );
 add_editor_style();
 
 /** Add support for custom header */
-add_theme_support( 'genesis-custom-header', array( 'width' => 220, 'height' => 100 ) );
+add_theme_support( 'custom-header', array( 'width' => 220, 'height' => 100 ) );
 
 /** Add support for 3-column footer widgets */
 add_theme_support( 'genesis-footer-widgets', 3 );
