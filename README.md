@@ -62,6 +62,7 @@ I'd like personally thank the following people for their help and contributions 
 - Remove support for DJ's CPT and images
 - Removed @import fonts
 - Added @font-face via wp_enqueue_style();
+- Added Featured Video Widget
 
 <strong>v1.3.2</strong>
 - Added support for oEmbed
@@ -110,6 +111,7 @@ I'd like personally thank the following people for their help and contributions 
 - Initial release
 
 <h3>PLANNED</h3>
+- Transients to radio-latest-news-widget.php
 - Social Icons to navigation bar
 - Widget navigation drop-downs
 - Change to an 1140 grid

@@ -60,6 +60,7 @@
 * Social Media Icons
 * DJ Rotator Widget
 * Genesis Featured Widget Amplified
+* Radio Featured Video Widget
 * Photo Page & NextGen Gallery
 * Mail Chimp
 * Listen Live Button
@@ -1633,6 +1634,7 @@ div.gform_wrapper .gform_footer {
 	text-align: left;
 }
 
+
 /* Genesis Featured Widget Amplified
 ------------------------------------------------------------ */
 
@@ -1657,6 +1659,22 @@ div.gform_wrapper .gform_footer {
 	height: 278px !important;
 	width: 370px !important;
 	max-width: 370px !important;
+}
+
+/* Radio Featured Video Widget
+------------------------------------------------------------ */
+
+.featured-video-video,
+.featured-video-text {
+	text-align: center;
+}
+
+.featured-video-video iframe,
+.featured-video-video img,
+.featured-video-video object,
+.featured-video-video video {
+	max-height: 40%;
+	max-width: 90%;
 }
 
 
