@@ -19,7 +19,7 @@ function radio_grab_image() {
  * Set the excerpt limit
  * 
  * @author Bavotasan
- * @lin http://bavotasan.com/2009/limiting-the-number-of-words-in-your-excerpt-or-content-in-wordpress/
+ * @link http://bavotasan.com/2009/limiting-the-number-of-words-in-your-excerpt-or-content-in-wordpress/
  * @since 1.3.0
  */
 function excerpt( $limit ) {
@@ -39,7 +39,7 @@ function excerpt( $limit ) {
  * Set the content limit
  * 
  * @author Bavotasan
- * @lin http://bavotasan.com/2009/limiting-the-number-of-words-in-your-excerpt-or-content-in-wordpress/
+ * @link http://bavotasan.com/2009/limiting-the-number-of-words-in-your-excerpt-or-content-in-wordpress/
  * @since 1.3.0
  */
 function content( $limit ) {

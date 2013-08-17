@@ -32,7 +32,6 @@
 - <a href="http://wordpress.org/extend/plugins/genesis-simple-edits/" target="_blank">Genesis Simple Edits</a>
 - <a href="http://wordpress.org/extend/plugins/disqus-comment-system/" target="_blank">Disqus Comment System</a>
 - <a href="http://wordpress.org/extend/plugins/simple-social-icons/" target="_blank">Simple Social Icons</a>
-- <a href="http://wordpress.org/extend/plugins/genesis-featured-widget-amplified/" target="_blank">Genesis Featured Widget Amplified</a>
 - <a href="http://soliloquywp.com/">Soliloquy Slider</a>
 
 <h3>PHOTO GALLERY</h3>
@@ -57,6 +56,12 @@ I'd like personally thank the following people for their help and contributions 
 - <a href="http://billerickson.net/">Bill Erickson</a>
 
 <h3>CHANGE LOG</h3>
+
+<strong>v1.3.3</strong>
+- Update custom header support for Genesis 2.0
+- Remove support for DJ's CPT and images
+- Removed @import fonts
+- Added @font-face via wp_enqueue_style();
 
 <strong>v1.3.2</strong>
 - Added support for oEmbed
@@ -105,7 +110,7 @@ I'd like personally thank the following people for their help and contributions 
 - Initial release
 
 <h3>PLANNED</h3>
-- DJ bio pages with social media streams
+- Social Icons to navigation bar
 - Widget navigation drop-downs
-- Add support for Woo Flex Slider and WP-Cycle
 - Change to an 1140 grid
+- Button shortcode
