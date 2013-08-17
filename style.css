@@ -1673,7 +1673,7 @@ div.gform_wrapper .gform_footer {
 .featured-video-video img,
 .featured-video-video object,
 .featured-video-video video {
-	max-height: 40%;
+	max-height: 208px;
 	max-width: 90%;
 }
 
