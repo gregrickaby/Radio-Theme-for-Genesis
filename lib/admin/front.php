@@ -24,16 +24,15 @@ class Radio_Front_End_Customizations {
 	private $settings_field = 'child-settings';
 
 	public function __construct() {
-		add_action( 'genesis_meta', array( &$this, 'add_dns_pre_fetch' ), 1 );
-		add_action( 'genesis_meta', array( &$this, 'add_viewport_meta_tag' ), 2 );
-		add_action( 'wp_enqueue_scripts', array( &$this, 'scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( &$this, 'styles' ) ); // Yes, hook to wp_enqueue_scripts
+		add_action( 'genesis_meta', array( $this, 'add_dns_pre_fetch' ), 1 );
+		add_action( 'genesis_meta', array( $this, 'add_viewport_meta_tag' ), 2 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'styles' ) ); // Yes, hook to wp_enqueue_scripts
 		add_action( 'wp_print_styles', array( $this, 'radio_manage_scripts' ) );
-		add_action( 'genesis_before', array ( &$this, 'radio_fb_root' ) );
-		add_action( 'genesis_before', array( &$this, 'radio_live_toolbar' ) );
-		add_action( 'genesis_after_post_content', array( &$this, 'radio_social_media_icons' ), 5 );
+		add_action( 'genesis_before', array ( $this, 'radio_fb_root' ) );
+		add_action( 'genesis_before', array( $this, 'radio_live_toolbar' ) );
 		add_filter( 'genesis_pre_load_favicon', 'radio_favicon_filter' );
-		add_filter( 'body_class', array( &$this, 'body_class' ) );
+		add_filter( 'body_class', array( $this, 'body_class' ) );
 	}
 
 
@@ -119,7 +118,7 @@ class Radio_Front_End_Customizations {
 	 * @since 1.0.0
 	 */
 	public function radio_live_toolbar() { 
-		$toolbar = genesis_get_option ( 'station_live_toolbar', $this->settings_field );
+		$toolbar = genesis_get_option( 'station_live_toolbar', $this->settings_field );
 		$listen  = genesis_get_option( 'station_listen', $this->settings_field );
 		$phone   = genesis_get_option( 'station_phone', $this->settings_field );
 		$text    = genesis_get_option( 'station_text', $this->settings_field );
@@ -145,68 +144,6 @@ class Radio_Front_End_Customizations {
 			</div>
 		</div><!-- end #live-toolbar -->
 	<?php }
-
-
-	/**
-	 * Create social media icons to show below posts
-	 *
-	 * @author Greg Rickaby
-	 * @since 1.0.0
-	 */
-	public function radio_social_media_icons() {
-	$showsocialicons = genesis_get_option ( 'station_social_icons', $this->settings_field );
-	$showsocialpages = genesis_get_option ( 'station_social_icons_pages', $this->settings_field );
-	$twittername  = genesis_get_option( 'station_twitter', $this->settings_field );
-	
-	if ( ! $showsocialicons ) // Show on posts
-		return;
-			if ( ! $showsocialpages ) // Show on pages
-				return;
-					if ( !is_front_page() ) // Never show on homepage
-	{ ?>
-
-	<div id="social-media-icons">
-		<div class="facebook-button">
-			<div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-		</div>
-
-		<div class="twitter-button">
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php the_permalink(); ?>" data-text="<?php the_title(); ?>" data-via="<?php echo $twittername ?>">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		</div>
-
-		<div class="gplus-button">
-		<g:plusone size="medium" href="<?php the_permalink(); ?>"></g:plusone>
-			<script type="text/javascript">
-				(function() {
-					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-					po.src = 'https://apis.google.com/js/plusone.js';
-					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
- 				})();
-			</script>
-		</div>
-
-		<div class="pinterest-button">
-			<a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo genesis_get_image( array( 'format' => 'url' ) ); ?>" class="pin-it-button" count-layout="horizontal">Pin It</a><script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script>
-		</div>
-
-		<div class="stumbleupon-button">
-			<su:badge layout="1"></su:badge>
-				<script type="text/javascript">
-					(function() {
-						var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
-						li.src = window.location.protocol + '//platform.stumbleupon.com/1/widgets.js';
-						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
-					})();
-				</script>
-		</div>
-
-		<div class="linkedin-button">
-			<script src="http://platform.linkedin.com/in.js" type="text/javascript"> </script>
-			<script type="IN/Share" data-url="<?php the_permalink(); ?>" data-counter="right"> </script>
-		</div>
-
-	</div>
-	<?php } }
 
 
 	/**

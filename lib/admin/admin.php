@@ -210,18 +210,9 @@ class Radio_Theme_Settings extends Genesis_Admin_Boxes {
 
 
 	public function social_info() {		
-		echo '<input type="checkbox" name="' . $this->get_field_name( 'station_social_icons' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'station_social_icons' ) ) . ' />';
-		echo '<label> Show Social Media Icons on Posts?</label>';
-		echo '<p><span class="description">Check to add Social Media Icons to the bottom of all posts.</span></p>';
-
-		echo '<input type="checkbox" name="' . $this->get_field_name( 'station_social_icons_pages' ) . '" value="checked" '. esc_attr( $this->get_field_value( 'station_social_icons_pages' ) ) . ' />';
-		echo '<label> Show Social Media Icons on Pages?</label>';
-		echo '<p><span class="description">Check to add Social Media Icons to the bottom of all pages.</span></p>';
-
 		echo '<label>Twitter Username: </label>';
 		echo '<input type="text" name="' . $this->get_field_name( 'station_twitter' ) .'" id="' . $this->get_field_id( 'station_twitter' ) . '" value="' . esc_attr( $this->get_field_value( 'station_twitter' ) ) . '" size="40" />';
 		echo '<p><span class="description">StationName</span></p>';
-
 
 		echo '<label>Facebook Page URL: </label>';
 		echo '<input type="text" name="' . $this->get_field_name( 'station_facebook' ) .'" id="' . $this->get_field_id( 'station_facebook' ) . '" value="' . esc_attr( $this->get_field_value( 'station_facebook' ) ) . '" size="40" />';
