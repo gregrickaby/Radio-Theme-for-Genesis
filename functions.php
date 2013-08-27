@@ -18,7 +18,6 @@ require_once( TEMPLATEPATH.'/lib/init.php' );
 if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) ) {
 		include_once( CHILD_DIR . '/lib/admin/admin.php' );
 		include_once( CHILD_DIR . '/lib/admin/front.php' );
-		include_once( CHILD_DIR . '/lib/scripts/opengraph-meta.php' );
 		include_once( CHILD_DIR . '/lib/widgets/radio-featured-video-widget.php' );
 		include_once( CHILD_DIR . '/custom/custom_functions.php' );
 }

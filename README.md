@@ -1,4 +1,4 @@
-<h3>RADIO THEME v1.3.2</h3>
+<h3>RADIO THEME v1.3.4</h3>
 <a href="http://radio.gregrickaby.com">http://radio.gregrickaby.com</a>
 
 <h3>REQUIREMENTS</h3>
@@ -57,10 +57,14 @@ I'd like personally thank the following people for their help and contributions 
 
 <h3>CHANGE LOG</h3>
 
+<strong>v1.3.4</strong>
+- Remove OpenGraph data (in favor for Jetpack Sharing)
+- Remove Social Media Icons (in favor for Jetpack Sharing)
+
 <strong>v1.3.3</strong>
 - Update custom header support for Genesis 2.0
 - Remove support for DJ's CPT and images
-- Removed @import fonts
+- Remove @import fonts
 - Added @font-face via wp_enqueue_style();
 - Added Featured Video Widget
 
