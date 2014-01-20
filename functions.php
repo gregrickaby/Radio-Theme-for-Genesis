@@ -1,8 +1,8 @@
 <?php
 /**
  * Functions
- * 
- * This file handles the theme setup and intialization. 
+ *
+ * This file handles the theme setup and intialization.
  *
  * @package      Radio
  * @since        1.0.0
@@ -24,7 +24,8 @@ if ( version_compare( PARENT_THEME_VERSION, '1.7.9', '>' ) ) {
 
 /** Image Sizes */
 add_image_size ( 'featured', 370, 116, true );
-add_image_size ( 'nivoslider', 960, 300, true );
+add_image_size ( 'soliloquy', 960, 300, true );
+add_image_size ( 'soliloquy-retina', 1812, 600, true );
 
 /** Add support for oEmbeds */
 if ( ! isset( $content_width ) )
@@ -52,7 +53,7 @@ add_theme_support( 'automatic-feed-links' );
 add_filter ( 'genesis_edit_post_link' , '__return_false' );
 
 /** Create additional color style options */
-add_theme_support( 'child-style-selector', array( 
+add_theme_support( 'child-style-selector', array(
 	'radio-red' => 'Red',
 	'radio-orange' => 'Orange',
 	'radio-green' => 'Green',
@@ -107,7 +108,6 @@ function radio_google_fonts() {
 	wp_enqueue_style( 'googlefont-open-sans' );
 
 }
-
 
 /**
  * Change the location of the favicon reference.
