@@ -1,49 +1,68 @@
-<?php 
+<?php
 /**
- * This file adds the Photos Page template to our Child Theme.
+ * The template for displaying photos.
  *
- * @package Radio
- * @author Greg Rickaby
- * @since 1.0.0
+ * @package    Radio
+ * @since      1.0.0
+ * @author     Greg Rickaby greg@gregrickaby.com
+ * @copyright  Copyright (c) 2012-2014
+ * @license    http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ *
  */
 
 /*
 Template Name: Photos
 */
 
-add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' ); // Force Full-Width Layout
-remove_action( 'genesis_loop', 'genesis_do_loop' ); 
-add_action( 'genesis_loop', 'radio_loop_photos' ); 
+// Force Full-Width Layout
+add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
+
+// Remove default loop
+remove_action( 'genesis_loop', 'genesis_do_loop' );
+
+
+add_action( 'genesis_loop', 'radio_loop_photos' );
 /**
- * Remove default loop. Execute child loop instead.
+ * Photos Page loop
  *
  * @author Greg Rickaby
- * @since 1.0.0
+ * @since  1.0.0
+ * @return html  photos
  */
 function radio_loop_photos() { ?>
-	<div <?php post_class( 'photos' ); ?>>
 
+	<div <?php post_class( 'photos' ); ?>>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 			<div class="row-photos clear">
-			<?php 
-				$args = array(
-					'category_name' => 'photos',
-					'posts_per_page' => 512,
-					'order' => 'DESC'
-				);
+			<?php
+				// Check for transient
+				if ( ! ( $radio_photos_query = get_transient( 'radio_photos_query' ) ) ) {
 
-			$query = new WP_Query( $args ); 
-			if ( $query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
-			$do_not_duplicate = $post->ID; ?>
+					// Execute WP_Query
+					$photo_query  = new WP_Query( array(
+						'posts_per_page' => 512,
+						'category_name'  => 'photos',
+						'order'          => 'DESC'
+					));
+
+					// Store transient and expire after 4 hours
+					set_transient( 'radio_photos_query', $photo_query, 4 * HOUR_IN_SECONDS );
+
+				}
+
+				if ( $photo_query>have_posts() ) : while ( $photo_query>have_posts() ) : $photo_query>the_post(); ?>
 				<div class="photo-info left">
 					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( array( 150,150 ), array( 'class' => 'photo' ) ); ?></a>
-					<div class="photo-title"><p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p></div>
+					<div class="photo-title">
+						<p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
+					</div>
 				</div>
-			<?php endwhile; else : ?>
-				<p>Sorry, no posts found</p>
-			<?php endif; wp_reset_query(); ?>
+				<?php endwhile; ?>
+				<?php else : ?>
+					<p>Sorry, no posts found</p>
+				<?php endif; ?>
+				<?php wp_reset_query(); ?>
 			</div>
-
 	</div><!-- end .post -->
 
 <?php }

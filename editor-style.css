@@ -1,0 +1,206 @@
+/*
+Defaults
+------------------------------------------------------------------------- */
+html {
+  font-size: 62.5%;
+  /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+  overflow-y: scroll;
+  /* Keeps page centered in all browsers regardless of content height */
+  -webkit-text-size-adjust: 100%;
+  /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+  -ms-text-size-adjust: 100%;
+  /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+
+body.mceContentBody {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+
+embed,
+iframe,
+img,
+object,
+video,
+.wp-caption {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+  width: auto;
+  /* IE8 */
+}
+
+p {
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+}
+
+ul,
+ol {
+  padding-left: 24px;
+  padding-left: 2.4rem;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 24px;
+  margin-left: 2.4rem;
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin: 0 24px 24px;
+  margin: 0 2.4rem 2.4rem;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  background: #eee;
+  border-left: 10px solid #ddd;
+  margin: 24px 0;
+  margin: 2.4rem 0;
+  padding: 5px 10px;
+  padding: 0.5rem 1rem;
+  quotes: '\201C' '\201D' '\2018' '\2019';
+}
+
+blockquote p {
+  display: inline;
+}
+
+address {
+  margin: 0 0 24px;
+  margin: 0 0 2.4rem;
+}
+
+pre {
+  background: #eee;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
+  padding: 12px;
+  padding: 1.2rem;
+  overflow: auto;
+  max-width: 100%;
+}
+
+code,
+kbd,
+tt,
+var {
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 10px;
+  font-size: 1rem;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #eee;
+  cursor: help;
+}
+
+mark,
+ins {
+  background: #eee;
+  text-decoration: none;
+}
+
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: .5ex;
+}
+
+small {
+  font-size: 75%;
+}
+
+big {
+  font-size: 125%;
+}
+
+figure {
+  margin: 0;
+}
+
+th {
+  font-weight: 700;
+}
+
+/* Headlines
+--------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
+  padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-size: 3.6rem;
+}
+
+h2 {
+  font-size: 30px;
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 24px;
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 20px;
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 18px;
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 16px;
+  font-size: 1.6rem;
+}

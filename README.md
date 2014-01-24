@@ -1,4 +1,4 @@
-<h3>RADIO THEME v1.3.4</h3>
+<h3>RADIO THEME v1.4</h3>
 <a href="http://radio.gregrickaby.com">http://radio.gregrickaby.com</a>
 
 <h3>REQUIREMENTS</h3>
@@ -13,10 +13,6 @@
 4. Inside your WordPress dashboard, go to Genesis > <a href="/wp-admin/admin.php?page=radio-theme-settings">Radio Settings</a> to configure.
 5. Rename /custom-sample/ to /custom/
 
-<h3>IMAGES</h3>
-- <strong>Nivo slider 960x300 pixels.</strong> TimThumb will automatically crop and resize.
-- <strong>Featured images 370x150 pixels.</strong> WordPress will automatically crop and resize.
-
 <h3>WIDGET AREAS</h3>
 - <strong>Primary Sidebar</strong> - This is the primary sidebar.
 - <strong>Header Right</strong> - This is the widgeted area that appears at the top right of the header.
@@ -25,14 +21,15 @@
 - <strong>Footer 2</strong> - This is a widgeted area that appears on the bottom of every page.
 - <strong>Footer 3</strong> - This is a widgeted area that appears on the bottom of every page.
 
-<h3>RECOMMENDED PLUG-INS</h3>
-- <a href="http://wordpress.org/extend/plugins/dj-rotator-for-wordpress/" target="_blank">DJ Rotator For WordPress</a>
-- <a href="http://wordpress.org/extend/plugins/nextgen-gallery/" target="_blank">NextGen Gallery</a>
-- <a href="http://www.gravityforms.com/" target="_blank">Gravity Forms</a>
-- <a href="http://wordpress.org/extend/plugins/genesis-simple-edits/" target="_blank">Genesis Simple Edits</a>
-- <a href="http://wordpress.org/extend/plugins/disqus-comment-system/" target="_blank">Disqus Comment System</a>
-- <a href="http://wordpress.org/extend/plugins/simple-social-icons/" target="_blank">Simple Social Icons</a>
-- <a href="http://soliloquywp.com/">Soliloquy Slider</a>
+<h3>RECOMMENDED AND SUPPORTED PLUG-INS</h3>
+- <a href="http://wordpress.org/plugins/soliloquy-lite/">Soliloquy Lite</a>
+- <a href="http://wordpress.org/plugins/jetpack/">Jetpack by WordPress.com</a>
+- <a href="http://wordpress.org/plugins/wordpress-seo/">WordPress SEO by Yoast</a>
+- <a href="http://wordpress.org/extend/plugins/nextgen-gallery/">NextGen Gallery</a>
+- <a href="http://wordpress.org/extend/plugins/dj-rotator-for-wordpress/">DJ Rotator For WordPress</a>
+- <a href="http://wordpress.org/extend/plugins/genesis-simple-edits/">Genesis Simple Edits</a>
+- <a href="http://wordpress.org/extend/plugins/disqus-comment-system/">Disqus Comment System</a>
+- <a href="http://wordpress.org/extend/plugins/simple-social-icons/">Simple Social Icons</a>
 
 <h3>PHOTO GALLERY</h3>
 1. Add new <a href="/wp-admin/post-new.php?post_type=page">PAGE</a> and name it "Photos"
@@ -45,28 +42,36 @@
 
 Now visit your photos PAGE and you'll see your photo gallery!
 
-<h3>SUPPORT</h3>
-Please visit <a href="http://radio.gregrickaby.com/support">http://radio.gregrickaby.com/support</a> for theme support.
-
 <h3>CREDITS</h3>
 I'd like personally thank the following people for their help and contributions to the code:
-- <a href="http://garyjones.co.uk/">Gary Jones</a>
-- <a href="http://wpsmith.net/">Travis Smith</a>
-- <a href="http://about.me/jtsternberg">Justin Sternberg</a>
-- <a href="http://billerickson.net/">Bill Erickson</a>
+- <a href="https://twitter.com/GaryJ">Gary Jones</a>
+- <a href="https://twitter.com/wp_smith/">Travis Smith</a>
+- <a href="https://twitter.com/Jtsternberg">Justin Sternberg</a>
 
 <h3>CHANGE LOG</h3>
 
+<strong>v1.3.5</strong>
+- Add docblocks
+- Add transient support
+- Add editor-style.css
+- Add retina image size for Soliloquy
+- Update screenshot
+- Remove nivo slider (use soliloquy)
+- Remove timthumb.php
+- Remove nivo javascript
+- Remove social support (use jetpack)
+- Refactor codebase
+
 <strong>v1.3.4</strong>
+- Add featured video widget
 - Remove OpenGraph data (in favor for Jetpack Sharing)
 - Remove Social Media Icons (in favor for Jetpack Sharing)
 
 <strong>v1.3.3</strong>
 - Update custom header support for Genesis 2.0
 - Remove support for DJ's CPT and images
-- Remove @import fonts
+- Removed @import fonts
 - Added @font-face via wp_enqueue_style();
-- Added Featured Video Widget
 
 <strong>v1.3.2</strong>
 - Added support for oEmbed
@@ -115,8 +120,8 @@ I'd like personally thank the following people for their help and contributions 
 - Initial release
 
 <h3>PLANNED</h3>
-- Transients to radio-latest-news-widget.php
-- Social Icons to navigation bar
-- Widget navigation drop-downs
-- Change to an 1140 grid
-- Button shortcode
+- HTML5 support
+- (Full) Genesis 2.0 support
+- Slim down and update CSS
+- 1140 Grid
+- Further i18n
