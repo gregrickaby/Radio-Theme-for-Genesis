@@ -50,7 +50,7 @@ I'd like personally thank the following people for their help and contributions 
 
 <h3>CHANGE LOG</h3>
 
-<strong>v1.3.5</strong>
+<strong>v1.4</strong>
 - Add docblocks
 - Add transient support
 - Add editor-style.css
