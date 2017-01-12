@@ -26,12 +26,9 @@ function radio_grab_image() {
 
 	$first_img = '';
 
-	ob_start();
-	ob_end_clean();
-
 	// Find the first <img>
 	$output    = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
-	$first_img = $matches [1] [0];
+	$first_img = $matches[1][0];
 
 	return $first_img;
 }
@@ -116,7 +113,7 @@ function radio_featured_content_slider() {
 	// Get settings
 	$solil_id = genesis_get_option( 'solil_id', 'child-settings' ); ?>
 
-	<?php if ( ( ! $nivo_toggle ) && function_exists( 'soliloquy_slider' ) ) : ?>
+	<?php if ( function_exists( 'soliloquy_slider' ) ) : ?>
 		<div class="slider-wrapper radio-soliloquy">
 			<?php soliloquy_slider( absint( $solil_id ) ); ?>
 		</div>
